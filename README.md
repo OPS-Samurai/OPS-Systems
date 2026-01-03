@@ -1,48 +1,51 @@
-# 🛠️ SysAdmin Dotfiles
+# 🛠️ SysAdmin Dotfiles (Jarvis Powered)
 
-Persönliche Konfigurationsdateien und Shell-Erweiterungen für Linux (Kali/Debian), optimiert für Systemadministration und Security-Audits.
+Automatisiertes Setup für Kali Linux / Debian.
 
-## 🚀 Installation (Automated)
+## 🚀 Quick Install
+```bash
+git clone [https://github.com/Anonjk1ng7/dotfiles.git](https://github.com/Anonjk1ng7/dotfiles.git) ~/dotfiles
+chmod +x ~/dotfiles/install.sh
+~/dotfiles/install.sh
+📦 Features & Befehle(Diese Liste wird automatisch aus dem Quellcode generiert)BefehlBeschreibungEOF
+### Schritt 3: Den Generator bauen (`gendocs.sh`)
 
-Dieses Repository enthält ein Installations-Skript, das automatisch Backups der bestehenden Konfiguration erstellt und die neuen Dotfiles verlinkt (`symlink`).
+Hier passiert die Magie. Dieses Skript nimmt den Header, sucht alle Zeilen mit `# @doc:` in der `zshrc` und klebt sie als Tabelle darunter.
 
 ```bash
-# 1. Repository klonen
-git clone [https://github.com/Anonjk1ng7/dotfiles.git](https://github.com/Anonjk1ng7/dotfiles.git) ~/dotfiles
+cat << 'EOF' > ~/dotfiles/gendocs.sh
+#!/bin/bash
 
-# 2. In das Verzeichnis wechseln
-cd ~/dotfiles
+DOTFILES_DIR=~/dotfiles
+README=$DOTFILES_DIR/README.md
+HEADER=$DOTFILES_DIR/README_HEADER.md
+ZSHRC=$DOTFILES_DIR/zshrc
 
-# 3. Installer ausführen
-chmod +x install.sh
-./install.sh
+# 1. Header schreiben
+cat "$HEADER" > "$README"
 
-# 4. Shell neu laden
-source ~/.zshrc
+# 2. Funktionen parsen und als Markdown-Tabelle anhängen
+# Wir suchen nach dem Muster: # @doc: BESCHREIBUNG
+# und nehmen an, die Zeile DARUNTER ist der Funktionsname (funktionsname() {)
 
-📦 Features
-Custom Functions
-logusr
-Filtert die /etc/passwd und zeigt nur "echte" Benutzer (UID >= 1000) sowie root an. System-Accounts (wie daemon, www-data) werden ausgeblendet.
+grep -B 1 "^# @doc:" "$ZSHRC" | grep -v "\-\-" | while read line; do
+    if [[ $line == "# @doc:"* ]]; then
+        # Beschreibung extrahieren (alles nach @doc:)
+        DESC=${line#*@doc: }
+    else
+        # Funktionsname extrahieren (alles vor ())
+        CMD=$(echo $line | cut -d'(' -f1)
+        
+        # In README schreiben
+        echo "| **\`$CMD\`** | $DESC |" >> "$README"
+    fi
+done
 
-Nutzung:
+echo "📄 [Jarvis] README.md wurde aktualisiert."
 
-Bash
-
-$ logusr
-root
-samurai
-...
-Safety Features
-Das install.sh Skript überschreibt keine vorhandenen Dateien blind.
-
-Backup: Existierende Konfigs werden automatisch nach ~/.dotfiles_backup_<TIMESTAMP>/ verschoben.
-
-Symlinks: Es werden symbolische Verknüpfungen genutzt (via ln -s), sodass Änderungen im dotfiles-Ordner sofort aktiv sind.
-
-📂 Struktur
-zshrc: Hauptkonfiguration für Zsh.
-
-install.sh: Deployment-Skript mit Backup-Funktion.
-
-Status: Active / Maintainer: Anonjk1ng7 EOF
+| **``** |  |
+| **``** | Zeigt "echte" User (UID >= 1000) und Root an. |
+| **``** | Führt ein volles System-Update (Update, Full-Upgrade, Autoremove) durch. |
+| **``** | Synchronisiert Dotfiles mit GitHub (Auto-Commit & Push). Usage: dotsync "Message" |
+| **``** | Smart-Sync: Nutzt automatisch neue @doc-Einträge als Commit-Message, falls kein Text angegeben wird. |
+| **``** | Navigation: Springt zwei Verzeichnisse nach oben. |
