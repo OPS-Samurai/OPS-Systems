@@ -269,3 +269,57 @@ logusr() {
 
 }
 
+
+# Custom Function: Full System Update (Kali/Debian)
+sysup() {
+    echo "🚀 [Jarvis] Initialisiere System-Update-Protokoll..."
+    
+    # 1. Paketlisten aktualisieren
+    sudo apt update
+    
+    # Check ob update erfolgreich war ($? ist der Exit-Code des letzten Befehls)
+    if [ $? -eq 0 ]; then
+        echo "⬇️  [Jarvis] Starte Download & Installation (full-upgrade)..."
+        # -y bestätigt automatisch, damit Sie nicht warten müssen
+        sudo apt full-upgrade -y
+        
+        echo "🧹 [Jarvis] Entferne ungenutzte Abhängigkeiten (autoremove)..."
+        sudo apt autoremove -y
+        
+        echo "✨ [Jarvis] Bereinige Paket-Cache..."
+        sudo apt autoclean
+        
+        echo "✅ [Jarvis] System ist auf dem neuesten Stand."
+    else
+        echo "❌ [Jarvis] Fehler beim Aktualisieren der Paketquellen. Abbruch."
+    fi
+}
+
+# Custom Function: Dotfiles Cloud Sync
+dotsync() {
+    # Nachricht definieren: Entweder User-Input ($1) oder Zeitstempel
+    local msg="${1:-Auto-Sync: $(date '+%Y-%m-%d %H:%M:%S')}"
+    
+    echo "☁️ [Jarvis] Initiiere Cloud-Uplink für Dotfiles..."
+    
+    # 1. Add (Alles stagen)
+    git -C ~/dotfiles add .
+    
+    # 2. Commit (Nur wenn es Änderungen gibt)
+    # 'diff-index --quiet HEAD' prüft, ob es Änderungen gibt.
+    if ! git -C ~/dotfiles diff-index --quiet HEAD --; then
+        git -C ~/dotfiles commit -m "$msg"
+        
+        # 3. Push
+        echo "⬆️ [Jarvis] Lade Daten zu GitHub..."
+        git -C ~/dotfiles push
+        
+        if [ $? -eq 0 ]; then
+            echo "✅ [Jarvis] Synchronisation erfolgreich abgeschlossen."
+        else
+            echo "❌ [Jarvis] Fehler beim Upload. Bitte Verbindung prüfen."
+        fi
+    else
+        echo "zzz [Jarvis] Keine lokalen Änderungen erkannt. Upload nicht nötig."
+    fi
+}
