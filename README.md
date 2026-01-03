@@ -46,9 +46,8 @@ echo "📄 [Jarvis] README.md wurde aktualisiert."
 | **``** |  |
 | **``** | Zeigt "echte" User (UID >= 1000) und Root an. |
 | **``** | Führt ein volles System-Update (Update, Full-Upgrade, Autoremove) durch. |
-| **``** | Synchronisiert Dotfiles mit GitHub (Auto-Commit & Push). Usage: dotsync "Message" |
-| **``** | Smart-Sync: Nutzt automatisch neue @doc-Einträge als Commit-Message, falls kein Text angegeben wird. |
+| **``** | Zeigt die öffentliche IP-Adresse an (VPN-Check via ifconfig.me). |
 | **``** | Navigation: Springt zwei Verzeichnisse nach oben. |
-| **``** | Smart-Sync v3.1: Commit-First Strategie zur Vermeidung von Rebase-Konflikten. |
-| **`# ==============================================`** | Universal-Entpacker: Extrahiert Archive (tar, zip, rar, 7z, bz2) automatisch. |
+| **``** | Universal-Entpacker: Extrahiert Archive (tar, zip, rar, 7z, bz2) automatisch. |
 | **``** | History-Optimierung: Unendliches Gedächtnis, keine Duplikate, Sofort-Sync. |
+| **``** | Smart-Sync v3.1: Commit-First Strategie zur Vermeidung von Rebase-Konflikten. |
