@@ -49,3 +49,4 @@ echo "📄 [Jarvis] README.md wurde aktualisiert."
 | **``** | Synchronisiert Dotfiles mit GitHub (Auto-Commit & Push). Usage: dotsync "Message" |
 | **``** | Smart-Sync: Nutzt automatisch neue @doc-Einträge als Commit-Message, falls kein Text angegeben wird. |
 | **``** | Navigation: Springt zwei Verzeichnisse nach oben. |
+| **``** | Smart-Sync v3.1: Commit-First Strategie zur Vermeidung von Rebase-Konflikten. |
