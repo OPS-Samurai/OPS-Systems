@@ -43,16 +43,3 @@ done
 
 echo "📄 [Jarvis] README.md wurde aktualisiert."
 
-| **``** |  |
-| **``** | Zeigt "echte" User (UID >= 1000) und Root an. |
-| **``** | Führt ein volles System-Update durch. |
-| **``** | Zeigt die öffentliche IP-Adresse an. |
-| **``** | Navigation: Springt zwei Verzeichnisse nach oben. |
-| **``** | Universal-Entpacker. |
-| **``** | Smart-Sync v3.1: Commit-First Strategie. |
-| **``** | Erstellt ein Verzeichnis und wechselt SOFORT hinein (mkdir + cd). |
-| **``** | Startet sofort einen Python-Webserver (Port 8000) für Dateitransfers/Payloads. |
-| **``** | 'Fast Find': Findet Dateien im aktuellen Ordner (case-insensitive) ohne kryptische Parameter. |
-| **``** | Zeigt sofort alle offenen Ports und lauschenden Dienste an (Netzwerk-Check). |
-| **``** | Git-Aliase: g=git, gs=status, ga=add, gc=commit, gp=push, gl=graph-log. |
-| **``** | Config-Editor: Öffnet .zshrc und lädt sie nach dem Speichern SOFORT automatisch neu. |
