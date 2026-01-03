@@ -19,6 +19,7 @@ chmod +x install.sh
 
 # 4. Shell neu laden
 source ~/.zshrc
+
 📦 Features
 Custom Functions
 logusr
