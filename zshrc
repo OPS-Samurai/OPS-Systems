@@ -178,3 +178,22 @@ extract() {
         echo "❌ [Jarvis] Datei '$1' nicht gefunden."
     fi
 }
+
+# ==============================================
+# JARVIS MEMORY CORE (History Config)
+# ==============================================
+# @doc: History-Optimierung: Unendliches Gedächtnis, keine Duplikate, Sofort-Sync.
+
+# 1. Kapazität erhöhen (1 Million Einträge)
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+
+# 2. Intelligente Filter
+setopt EXTENDED_HISTORY          # Speichert Zeitstempel zu jedem Befehl
+setopt SHARE_HISTORY             # Sofortiger Sync zwischen allen offenen Tabs
+setopt HIST_EXPIRE_DUPS_FIRST    # Löscht bei Platzmangel zuerst Duplikate
+setopt HIST_IGNORE_DUPS          # Ignoriert direkte Wiederholung (ls, ls, ls -> 1x ls)
+setopt HIST_IGNORE_ALL_DUPS      # Entfernt ältere Einträge, wenn ein Befehl neu getippt wird
+setopt HIST_FIND_NO_DUPS         # Zeigt bei der Suche (Strg+R) keine Doppelten an
+setopt HIST_SAVE_NO_DUPS         # Schreibt keine Duplikate in die Datei
