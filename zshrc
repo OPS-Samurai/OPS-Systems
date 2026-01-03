@@ -197,3 +197,14 @@ setopt HIST_IGNORE_DUPS          # Ignoriert direkte Wiederholung (ls, ls, ls ->
 setopt HIST_IGNORE_ALL_DUPS      # Entfernt ältere Einträge, wenn ein Befehl neu getippt wird
 setopt HIST_FIND_NO_DUPS         # Zeigt bei der Suche (Strg+R) keine Doppelten an
 setopt HIST_SAVE_NO_DUPS         # Schreibt keine Duplikate in die Datei
+
+# @doc: Zeigt die öffentliche IP-Adresse an (VPN-Check via ifconfig.me).
+myip() {
+    echo "🔍 [Jarvis] Ermittle öffentliche Identität..."
+    local ip=$(curl -s --connect-timeout 3 ifconfig.me)
+    if [ -z "$ip" ]; then
+        echo "❌ [Jarvis] Keine Verbindung zum Identitäts-Server."
+    else
+        echo "🌐 Public IP: \033[1;32m$ip\033[0m"
+    fi
+}

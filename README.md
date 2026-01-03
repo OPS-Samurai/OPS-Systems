@@ -51,3 +51,4 @@ echo "📄 [Jarvis] README.md wurde aktualisiert."
 | **``** | Navigation: Springt zwei Verzeichnisse nach oben. |
 | **``** | Smart-Sync v3.1: Commit-First Strategie zur Vermeidung von Rebase-Konflikten. |
 | **`# ==============================================`** | Universal-Entpacker: Extrahiert Archive (tar, zip, rar, 7z, bz2) automatisch. |
+| **``** | History-Optimierung: Unendliches Gedächtnis, keine Duplikate, Sofort-Sync. |
