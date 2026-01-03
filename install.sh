@@ -1,32 +1,63 @@
 #!/bin/bash
 
-# --- Konfiguration ---
-DOTFILES_DIR=~/dotfiles
-BACKUP_DIR=~/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)
+# ==========================================
+# JARVIS DOTFILES INSTALLER (v2.0)
+# ==========================================
 
-# Liste der Dateien, die verlinkt werden sollen (Namen im Repo ohne Punkt)
-# Wenn wir später .bashrc oder .vimrc hinzufügen, einfach hier ergänzen:
-FILES="zshrc"
+# Farben für Output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
 
-# --- Start ---
-echo "🤖 Initialisiere Jarvis-Setup..."
+echo -e "${BLUE}🚀 [Jarvis] Starte Deployment-Protokoll...${NC}"
 
-# Backup-Ordner erstellen, falls nötig
-mkdir -p "$BACKUP_DIR"
-echo "📂 Backup-Verzeichnis erstellt: $BACKUP_DIR"
+# 1. System-Updates & Abhängigkeiten
+echo -e "${BLUE}⬇️  [Jarvis] Installiere Basis-Pakete (zsh, git, curl, unzip)...${NC}"
+sudo apt update && sudo apt install -y zsh git curl unzip
 
-# Loop durch alle Dateien
-for file in $FILES; do
-    SOURCE="$DOTFILES_DIR/$file"
-    TARGET="$HOME/.$file"
+# 2. Plugins installieren (Self-Healing)
+PLUGIN_DIR="$HOME/.zsh_plugins"
+mkdir -p "$PLUGIN_DIR"
 
-    if [ -f "$TARGET" ] || [ -L "$TARGET" ]; then
-        echo "   ⚠️  $TARGET existiert bereits. Verschiebe nach Backup..."
-        mv "$TARGET" "$BACKUP_DIR/"
+echo -e "${BLUE}🧩 [Jarvis] Prüfe Plugins...${NC}"
+
+# Syntax Highlighting
+if [ ! -d "$PLUGIN_DIR/zsh-syntax-highlighting" ]; then
+    echo "    -> Klone zsh-syntax-highlighting..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$PLUGIN_DIR/zsh-syntax-highlighting"
+else
+    echo -e "${GREEN}    -> zsh-syntax-highlighting vorhanden.${NC}"
+fi
+
+# Auto Suggestions
+if [ ! -d "$PLUGIN_DIR/zsh-autosuggestions" ]; then
+    echo "    -> Klone zsh-autosuggestions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$PLUGIN_DIR/zsh-autosuggestions"
+else
+    echo -e "${GREEN}    -> zsh-autosuggestions vorhanden.${NC}"
+fi
+
+# 3. Backup & Symlinks
+echo -e "${BLUE}🔗 [Jarvis] Verlinke Konfigurationsdateien...${NC}"
+
+# Backup Funktion
+backup_file() {
+    if [ -f "$1" ] && [ ! -L "$1" ]; then
+        BACKUP_DIR="$HOME/.dotfiles_backup_$(date +%s)"
+        mkdir -p "$BACKUP_DIR"
+        mv "$1" "$BACKUP_DIR/"
+        echo "    -> Backup von $1 erstellt in $BACKUP_DIR"
     fi
+}
 
-    echo "   🔗 Verlinke $SOURCE nach $TARGET"
-    ln -s "$SOURCE" "$TARGET"
-done
+# .zshrc verlinken
+TARGET="$HOME/.zshrc"
+SOURCE="$HOME/dotfiles/zshrc"
 
-echo "✅ Setup abgeschlossen! Bitte führen Sie 'source ~/.zshrc' aus oder starten Sie das Terminal neu."
+backup_file "$TARGET"
+ln -sf "$SOURCE" "$TARGET"
+echo -e "${GREEN}✅ .zshrc verlinkt.${NC}"
+
+# 4. Abschluss
+echo -e "${BLUE}✨ [Jarvis] Deployment erfolgreich abgeschlossen.${NC}"
+echo "Bitte starten Sie die Shell neu oder tippen Sie: zsh"
