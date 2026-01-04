@@ -32,7 +32,7 @@ cat ~/.ssh/id_ed25519.pub
 ### A. Repo klonen
 
 ```bash
-git clone git@github.com:Anonjk1ng7/dotfiles.git ~/dotfiles
+git clone git@github.com:Github-Name/dotfiles.git ~/dotfiles
 ```
 
 ### B. Aktivieren
