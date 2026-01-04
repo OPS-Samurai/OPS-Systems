@@ -8,6 +8,8 @@ Wir installieren die Basis-Tools und Python (für die Cross-Platform Skripte).
 ```bash
 sudo apt update
 sudo apt install git zsh tilix guake fonts-firacode python3 -y
+```
+
 2. Git Einrichten (SSH Methode)
 Für Linux nutzen wir SSH-Keys, um Passwörter zu vermeiden.
 
