@@ -18,7 +18,7 @@ function ll {
 # @doc: Config bearbeiten (Smart: Code oder Notepad)
 function conf {
     $path = $PROFILE
-    # Prüfen, ob der Befehl "code" existiert
+    # Prüfen, ob VS Code ("code") verfügbar ist
     if (Get-Command "code" -ErrorAction SilentlyContinue) {
         Write-Host "📝 Öffne mit VS Code..." -ForegroundColor Cyan
         code $path
