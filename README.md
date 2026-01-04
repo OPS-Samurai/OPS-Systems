@@ -1,6 +1,11 @@
 # 🦅 Jarvis Dotfiles
-Modulare Konfiguration für Linux & Windows.
+Modulare System-Konfiguration für Cybersec & Sysadmin.
 
+### 📚 Installation & Setup
+| [🐧 Linux Guide](INSTALL_LINUX.md) | [🪟 Windows Guide](INSTALL_WINDOWS.md) |
+|:---:|:---:|
+
+---
 
 ## 🐧 Linux (Bash/Zsh)
 
@@ -35,8 +40,6 @@ Modulare Konfiguration für Linux & Windows.
 | **`Invoke-PortScan`** | Schneller TCP-Portscanner (Native PowerShell) | `portscan.ps1` |
 
 ## 🐍 Python (Cross-Platform)
-
-> *General: Keine Befehle gefunden.*
 
 ### 📂 Hacking
 | Befehl | Beschreibung | Datei |

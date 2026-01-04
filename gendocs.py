@@ -1,10 +1,9 @@
 import os
 
-# Pfade relativ zum Skript ermitteln (Bulletproof)
 REPO = os.path.dirname(os.path.abspath(__file__))
 README = os.path.join(REPO, "README.md")
 
-# Die gewünschte 3x2 Struktur
+# Die Struktur Ihrer Module
 STRUCTURE = {
     "🐧 Linux (Bash/Zsh)": {
         "General": os.path.join(REPO, "bash", "general"),
@@ -22,76 +21,71 @@ STRUCTURE = {
 
 def parse_file(filepath, filename):
     entries = []
-    with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
-        lines = f.readlines()
+    try:
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+            lines = f.readlines()
+    except:
+        return []
 
     doc_buffer = None
     
-    # Spezialfall: Python-Skripte sind oft selbst der Befehl
+    # Spezialfall: Python Skripte
     if filename.endswith(".py"):
-        # Suche nach File-Level Docstring in den ersten Zeilen
-        for line in lines[:10]:
+        for line in lines[:15]: # Prüfe die ersten 15 Zeilen
             if "# @doc:" in line:
                 desc = line.split("# @doc:", 1)[1].strip()
                 return [(f"**`{filename}`**", desc, filename)]
 
     # Parser für Bash/PowerShell Funktionen
-    for i, line in enumerate(lines):
+    for line in lines:
         line = line.strip()
-        
-        # 1. Doku finden
         if "# @doc:" in line:
             doc_buffer = line.split("# @doc:", 1)[1].strip()
-        
-        # 2. Befehl zuordnen (ignoriert Leerzeilen und Kommentare)
         elif doc_buffer and line and not line.startswith("#"):
-            cmd_name = None
+            cmd = None
+            # Bash Alias/Function
+            if "()" in line: cmd = line.split("(")[0].strip()
+            elif line.startswith("alias "): cmd = line.split("=")[0].replace("alias ", "").strip()
+            # PowerShell Function
+            elif line.lower().startswith("function "): cmd = line.split()[1].split("{")[0].strip()
             
-            # Bash/Zsh Muster
-            if "()" in line: 
-                cmd_name = line.split("(")[0].strip()
-            elif line.startswith("alias "):
-                cmd_name = line.split("=")[0].replace("alias ", "").strip()
-            
-            # PowerShell Muster
-            elif line.lower().startswith("function "):
-                cmd_name = line.split()[1].split("{")[0].strip()
-            elif line.lower().startswith("set-alias"):
-                parts = line.split("-Name")
-                if len(parts) > 1: cmd_name = parts[1].split()[0].strip()
-
-            if cmd_name:
-                entries.append((f"**`{cmd_name}`**", doc_buffer, filename))
-                doc_buffer = None # Reset
-            
+            if cmd:
+                entries.append((f"**`{cmd}`**", doc_buffer, filename))
+                doc_buffer = None
     return entries
 
 def generate():
-    content = ["# 🦅 Jarvis Dotfiles", "Modulare Konfiguration für Linux & Windows.\n"]
+    # Der Header mit den neuen Links
+    content = [
+        "# 🦅 Jarvis Dotfiles",
+        "Modulare System-Konfiguration für Cybersec & Sysadmin.\n",
+        "### 📚 Installation & Setup",
+        "| [🐧 Linux Guide](INSTALL_LINUX.md) | [🪟 Windows Guide](INSTALL_WINDOWS.md) |",
+        "|:---:|:---:|",
+        "\n---"
+    ]
     
+    # Befehle auflisten
     for main_cat, sub_cats in STRUCTURE.items():
         content.append(f"\n## {main_cat}")
-        
         for sub_name, sub_path in sub_cats.items():
             if not os.path.exists(sub_path): continue
             
-            folder_entries = []
-            for file in sorted(os.listdir(sub_path)):
-                if file.endswith((".sh", ".ps1", ".py")):
-                    folder_entries.extend(parse_file(os.path.join(sub_path, file), file))
+            cmds = []
+            for f in sorted(os.listdir(sub_path)):
+                if f.endswith((".sh", ".ps1", ".py")):
+                    cmds.extend(parse_file(os.path.join(sub_path, f), f))
             
-            if folder_entries:
+            if cmds:
                 content.append(f"\n### 📂 {sub_name}")
                 content.append("| Befehl | Beschreibung | Datei |")
                 content.append("|---|---|---|")
-                for cmd, desc, fsource in folder_entries:
-                    content.append(f"| {cmd} | {desc} | `{fsource}` |")
-            else:
-                content.append(f"\n> *{sub_name}: Keine Befehle gefunden.*")
+                for c, d, f in cmds:
+                    content.append(f"| {c} | {d} | `{f}` |")
 
     with open(README, "w", encoding="utf-8") as f:
         f.write("\n".join(content))
-    print("✅ README.md erfolgreich generiert.")
+    print("✅ README.md updated with links to Linux & Windows guides.")
 
 if __name__ == "__main__":
     generate()
