@@ -12,6 +12,7 @@ Modulare System-Konfiguration.
 | Befehl | Beschreibung | Datei |
 |---|---|---|
 | **`sysup`** | System-Update | `aliases.sh` |
+| **`netscan`** | Port Scanner (Python Wrapper) | `tools.sh` |
 
 ### 📂 Hacking
 | Befehl | Beschreibung | Datei |
