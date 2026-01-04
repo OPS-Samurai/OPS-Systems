@@ -1,4 +1,4 @@
-# @doc: System-Update (Winget)
+﻿# @doc: System-Update (Winget)
 function sysup {
     Write-Host "🚀 [Jarvis] Windows Update..." -ForegroundColor Cyan
     winget upgrade --all --include-unknown
@@ -18,7 +18,7 @@ function ll {
 # @doc: Config bearbeiten (Smart: Code oder Notepad)
 function conf {
     $path = $PROFILE
-    # Prüfen, ob VS Code ("code") verfügbar ist
+    # Prüft, ob VS Code da ist, sonst Notepad
     if (Get-Command "code" -ErrorAction SilentlyContinue) {
         Write-Host "📝 Öffne mit VS Code..." -ForegroundColor Cyan
         code $path
@@ -42,4 +42,10 @@ function dotsync {
     git -C $repo commit -m "$msg"
     git -C $repo pull --rebase
     git -C $repo push
+}
+
+# @doc: Port Scanner (Python)
+function netscan {
+    # Ruft das Python-Skript auf und reicht alle Argumente ($args) weiter
+    python "$env:USERPROFILE\dotfiles\python\hacking\netscan.py" $args
 }

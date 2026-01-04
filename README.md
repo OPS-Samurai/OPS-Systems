@@ -33,6 +33,7 @@ Modulare System-Konfiguration für Cybersec & Sysadmin.
 | **`ll`** | List List (wie ls -la) | `tools.ps1` |
 | **`conf`** | Config bearbeiten (Smart: Code oder Notepad) | `tools.ps1` |
 | **`dotsync`** | Dotfiles Sync (Windows Version) | `tools.ps1` |
+| **`netscan`** | Port Scanner (Python) | `tools.ps1` |
 
 ### 📂 Hacking
 | Befehl | Beschreibung | Datei |
