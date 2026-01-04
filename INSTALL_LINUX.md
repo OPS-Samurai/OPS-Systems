@@ -1,15 +1,19 @@
-# 🐧 Installationsanleitung für Linux (Bash & Zsh)
+# 🐧 Jarvis Installation Guide (Linux)
 
-Diese Anleitung beschreibt die Integration der SysAdmin-Aliase, Funktionen und Python-Skripte in eine Linux-Umgebung.
+**Zielsysteme:** Kali Linux, Linux Mint, Ubuntu, Debian.
 
-## 📋 Voraussetzungen
+---
 
-Bevor Sie beginnen, stellen Sie sicher, dass die folgenden Pakete installiert sind:
+## 1. Voraussetzungen & Python
+Wir installieren die Basis-Tools und Python.
 
-* **Git**: Zum Klonen des Repositories.
-* **Python 3.8+**: Für die Skripte.
-* **Pip & Venv**: Python Paket-Manager und Virtual Environment Modul.
-
-**Debian/Ubuntu/Kali:**
 ```bash
-sudo apt update && sudo apt install git python3 python3-pip python3-venv -y
+sudo apt update
+sudo apt install git zsh tilix guake fonts-firacode python3 -y
+```
+
+## 2. Git Einrichten (SSH)
+
+### A. Key generieren
+
+```bash
