@@ -31,7 +31,7 @@ Modulare System-Konfiguration für Cybersec & Sysadmin.
 | **`sysup`** | System-Update (Winget) | `tools.ps1` |
 | **`myip`** | Öffentliche IP anzeigen | `tools.ps1` |
 | **`ll`** | List List (wie ls -la) | `tools.ps1` |
-| **`conf`** | Config bearbeiten | `tools.ps1` |
+| **`conf`** | Config bearbeiten (Smart: Code oder Notepad) | `tools.ps1` |
 | **`dotsync`** | Dotfiles Sync (Windows Version) | `tools.ps1` |
 
 ### 📂 Hacking

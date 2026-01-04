@@ -15,9 +15,17 @@ function ll {
     Get-ChildItem -Force
 }
 
-# @doc: Config bearbeiten
+# @doc: Config bearbeiten (Smart: Code oder Notepad)
 function conf {
-    code $PROFILE
+    $path = $PROFILE
+    # Prüfen, ob der Befehl "code" existiert
+    if (Get-Command "code" -ErrorAction SilentlyContinue) {
+        Write-Host "📝 Öffne mit VS Code..." -ForegroundColor Cyan
+        code $path
+    } else {
+        Write-Warning "VS Code nicht gefunden. Öffne mit Notepad."
+        notepad $path
+    }
 }
 
 # @doc: Dotfiles Sync (Windows Version)
