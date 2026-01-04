@@ -64,13 +64,16 @@ Starten Sie PowerShell neu. Jarvis sollte Sie begrüßen.
 
 ### Testen der Tools
 
-```powershell
-# System-Update
-sysup
 
+# System-Update
+```powershell
+sysup
+```
 # Hacking-Tool Test
+```powershell
 Invoke-PortScan -Target 8.8.8.8
 ```
+
 ## 5. Workflow (Updates)
 
 ### Updates holen (Pull)
