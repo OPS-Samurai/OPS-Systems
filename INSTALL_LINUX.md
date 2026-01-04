@@ -30,6 +30,7 @@ Wir empfehlen, das Repository in einem versteckten Ordner im Home-Verzeichnis od
 cd ~
 
 # Repository klonen (Ordnername anpassbar, hier: .sysadmin-toolbox)
+# Ersetzen Sie IHR-USERNAME durch Ihren tatsächlichen GitHub-Usernamen
 git clone [https://github.com/IHR-USERNAME/sysadmin-toolbox.git](https://github.com/IHR-USERNAME/sysadmin-toolbox.git) .sysadmin-toolbox
 
 # In das Verzeichnis wechseln
@@ -79,7 +80,7 @@ source ~/.zshrc
 
 Option B: Manuelle Installation
 
-Öffnen Sie Ihre Konfigurationsdatei (z.B. nano ~/.bashrc).
+Öffnen Sie Ihre Konfigurationsdatei (z.B. nano ~/.bashrc oder nano ~/.zshrc).
 
 Fügen Sie am Ende folgende Zeilen hinzu:
 
