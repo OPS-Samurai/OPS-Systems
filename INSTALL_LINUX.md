@@ -1,4 +1,4 @@
-# 🐧 Jarvis Installation Guide (Linux)
+# 🐧 Installation Guide (Linux)
 
 **Zielsysteme:** Kali Linux, Linux Mint, Ubuntu, Debian.
 
