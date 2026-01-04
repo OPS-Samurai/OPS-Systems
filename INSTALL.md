@@ -1,11 +1,3 @@
-Führen Sie die folgenden Schritte nacheinander auf Ihrem Kali-Laptop aus.
-
-🐧 Schritt 1: Die Linux-Anleitung erstellen (INSTALL_LINUX.md)
-Hier gliedern wir nach Voraussetzungen, Git-Setup (SSH) und Installation.
-
-Bash
-
-cat << 'EOF' > ~/dotfiles/INSTALL_LINUX.md
 # 🐧 Jarvis Installation Guide (Linux)
 
 Zielsysteme: Kali Linux, Linux Mint, Ubuntu, Debian.
@@ -61,4 +53,3 @@ Updates holen (Pull): Da wir Symlinks nutzen, reicht oft ein git pull im Ordner 
 Bash
 
 dotsync "Beschreibung der Änderung"
-EOF
