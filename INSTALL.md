@@ -1,143 +1,64 @@
+Führen Sie die folgenden Schritte nacheinander auf Ihrem Kali-Laptop aus.
 
-# 🦅 Jarvis Installation Guide
-
-
-
-Ein modulares Setup für **Linux (Kali/Mint/Ubuntu)** und **Windows**.
-
-
-
----
-
-
-
-## 🐧 Linux Installation
-
-
-
-### 1. Voraussetzungen
-
-```bash
-
-sudo apt update
-
-sudo apt install git zsh tilix guake fonts-firacode -y
-
-2. Installation
+🐧 Schritt 1: Die Linux-Anleitung erstellen (INSTALL_LINUX.md)
+Hier gliedern wir nach Voraussetzungen, Git-Setup (SSH) und Installation.
 
 Bash
 
+cat << 'EOF' > ~/dotfiles/INSTALL_LINUX.md
+# 🐧 Jarvis Installation Guide (Linux)
 
+Zielsysteme: Kali Linux, Linux Mint, Ubuntu, Debian.
 
-# Repo klonen (SSH empfohlen)
+## 1. Voraussetzungen & Python
+Wir installieren die Basis-Tools und Python (für die Cross-Platform Skripte).
 
+```bash
+sudo apt update
+sudo apt install git zsh tilix guake fonts-firacode python3 -y
+2. Git Einrichten (SSH Methode)
+Für Linux nutzen wir SSH-Keys, um Passwörter zu vermeiden.
+
+Key generieren (falls noch keiner existiert):
+
+Bash
+
+ssh-keygen -t ed25519 -C "your-email@example.com"
+Key anzeigen:
+
+Bash
+
+cat ~/.ssh/id_ed25519.pub
+Kopiere diesen Output und füge ihn bei GitHub unter Settings -> SSH and GPG keys hinzu.
+
+3. Installation & Pull
+Wir klonen das Repo und verlinken die Config.
+
+Bash
+
+# Klonen
 git clone git@github.com:Anonjk1ng7/dotfiles.git ~/dotfiles
 
-
-
-# Zsh-Config verlinken (Backup falls nötig)
-
+# Backup der alten Config
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.bak
 
+# Symlink setzen (Der "Loader")
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 
-
-
-# Skripte ausführbar machen
-
+# Berechtigungen setzen
 chmod +x ~/dotfiles/bash/**/*.sh
-
 chmod +x ~/dotfiles/python/**/*.py
 
-
-
 # Shell wechseln
-
 chsh -s $(which zsh)
+Bitte einmal abmelden und neu anmelden.
 
-Nach dem erneuten Login ist Jarvis aktiv.
+4. Workflow (Push & Pull)
+Updates holen (Pull): Da wir Symlinks nutzen, reicht oft ein git pull im Ordner ~/dotfiles.
 
+Änderungen hochladen (Push): Nutze den Jarvis-Befehl:
 
+Bash
 
-🪟 Windows Installation
-
-1. Voraussetzungen
-
-Öffne PowerShell als Administrator:
-
-
-
-PowerShell
-
-
-
-winget install Git.Git Python.Python.3
-
-(Starte PowerShell danach neu).
-
-
-
-2. Klonen
-
-Öffne PowerShell (als normaler User):
-
-
-
-PowerShell
-
-
-
-cd $HOME
-
-git clone [https://github.com/Anonjk1ng7/dotfiles.git](https://github.com/Anonjk1ng7/dotfiles.git)
-
-3. Aktivierung (Profil verbinden)
-
-Kopiere diesen Block in deine PowerShell:
-
-
-
-PowerShell
-
-
-
-# 1. Profil-Ordner erstellen
-
-if (!(Test-Path (Split-Path $PROFILE))) { New-Item -ItemType Directory -Force -Path (Split-Path $PROFILE) }
-
-
-
-# 2. Skripte erlauben
-
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-
-
-
-# 3. Loader einbinden
-
-Add-Content -Path $PROFILE -Value ". $HOME\dotfiles\windows\profile.ps1"
-
-Starten Sie PowerShell neu.
-
-
-
-Tippe sysup für Updates.
-
-
-
-Tippe Invoke-PortScan für Hacking-Tools.
-
-
-
-🐍 Python Tools (Cross-Platform)
-
-Die Tools in python/ funktionieren überall.
-
-
-
-Linux: netscan.py 8.8.8.8
-
-
-
-Windows: python $HOME\dotfiles\python\hacking\netscan.py 8.8.8.8
-
+dotsync "Beschreibung der Änderung"
+EOF
