@@ -52,7 +52,8 @@ backup_file() {
 
 # .zshrc verlinken
 TARGET="$HOME/.zshrc"
-SOURCE="$HOME/dotfiles/zshrc"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+SOURCE="$SCRIPT_DIR/../Linux/zshrc"
 
 backup_file "$TARGET"
 ln -sf "$SOURCE" "$TARGET"

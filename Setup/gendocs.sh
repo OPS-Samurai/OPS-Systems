@@ -1,7 +1,8 @@
 #!/bin/bash
 
-README="$HOME/dotfiles/README.md"
-ZSHRC="$HOME/dotfiles/zshrc"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+README="$SCRIPT_DIR/../README.md"
+ZSHRC="$SCRIPT_DIR/../Linux/zshrc"
 
 echo "⚙️ [Jarvis] Generiere Dokumentation..."
 

@@ -1,21 +1,22 @@
 import os
 
-REPO = os.path.dirname(os.path.abspath(__file__))
-README = os.path.join(REPO, "README.md")
+# The root directory of all git projects is the parent of the 'OPS-Systems' folder
+REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+README = os.path.join(REPO, "OPS-Systems", "README.md")
 
-# Die Struktur Ihrer Module
+# The structure of the modules, pointing to the correct repositories
 STRUCTURE = {
     "🐧 Linux (Bash/Zsh)": {
-        "General": os.path.join(REPO, "bash", "general"),
-        "Hacking": os.path.join(REPO, "bash", "hacking")
+        "Toolkit": os.path.join(REPO, "Bash-Toolkit", "scripts"),
+        "RedTeam": os.path.join(REPO, "Bash-RedTeam-Scripts")
     },
     "🪟 Windows (PowerShell)": {
-        "General": os.path.join(REPO, "powershell", "general"),
-        "Hacking": os.path.join(REPO, "powershell", "hacking")
+        "Toolkit": os.path.join(REPO, "PowerShell-Toolkit"),
+        "Offensive": os.path.join(REPO, "PowerShell-Offensive")
     },
     "🐍 Python (Cross-Platform)": {
-        "General": os.path.join(REPO, "python", "general"),
-        "Hacking": os.path.join(REPO, "python", "hacking")
+        "Tools": os.path.join(REPO, "Python-Tools"),
+        "Hacking-Labs": os.path.join(REPO, "Python-Hacking-Labs")
     }
 }
 
@@ -73,9 +74,10 @@ def generate():
             if not os.path.exists(sub_path): continue
             
             cmds = []
-            for f in sorted(os.listdir(sub_path)):
-                if f.endswith((".sh", ".ps1", ".py")):
-                    cmds.extend(parse_file(os.path.join(sub_path, f), f))
+            for root, dirs, files in os.walk(sub_path):
+                for f in sorted(files):
+                    if f.endswith((".sh", ".ps1", ".py")):
+                        cmds.extend(parse_file(os.path.join(root, f), f))
             
             if cmds:
                 content.append(f"\n### 📂 {sub_name}")

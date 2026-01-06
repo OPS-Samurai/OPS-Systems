@@ -24,7 +24,7 @@ cd $HOME
 ### B. Repository klonen
 
 ```powershell
-git clone [https://github.com/Anonjk1ng7/dotfiles.git](https://github.com/Anonjk1ng7/dotfiles.git)
+git clone [https://github.com/Benutzername/dotfiles.git](https://github.com/Benutzername/dotfiles.git)
 ```
 
 ## 3. Installation (Profil verbinden)
