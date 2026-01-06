@@ -1,37 +1,22 @@
-# 🦅 Jarvis Dotfiles
-Modulare System-Konfiguration für Cybersec & Sysadmin.
+# 🖥️ OPS-Systems | Central Environment Configuration
 
-### 📚 Installation & Setup
-| [🐧 Linux Guide](INSTALL_LINUX.md) | [🪟 Windows Guide](INSTALL_WINDOWS.md) |
-|:---:|:---:|
+Zentrale "Source of Truth" für plattformübergreifende Systemkonfigurationen (Infrastructure-as-Code Prinzip).
 
----
+## 📊 Architektur & Struktur
+Dieses Repository folgt dem Prinzip der **Separation of Concerns**. Konfigurationen (Environment) sind strikt von funktionalen Werkzeugen (Toolkits) getrennt.
 
-## 🐧 Linux (Bash/Zsh)
+* **[🐧 Linux/](./Linux/)**: Dotfiles & Shell-Konfigurationen (`.zshrc`, `.bashrc`, `.aliases`).
+* **[🪟 Windows-Core/](./Windows-Core/)**: PowerShell-Kernkonfigurationen (`profile.ps1`) und Registry-Härtung.
+* **[🔄 Setup/](./Setup/)**: Automatisierte Deployment-Skripte für Greenfield-Installationen.
 
-### 📂 General
-| Befehl | Beschreibung | Datei |
-|---|---|---|
-| **`g`** | Git-Aliase | `aliases.sh` |
-| **`sysup`** | System-Update | `aliases.sh` |
-| **`conf`** | Config-Editor | `aliases.sh` |
-| **`dotsync`** | Automatischer Git-Sync | `aliases.sh` |
-| **`netscan`** | Port Scanner (Python Wrapper) | `tools.sh` |
-| **`sysup`** | System Update (Linux Version) | `tools.sh` |
-| **`myip`** | Öffentliche IP anzeigen | `tools.sh` |
-| **`ll`** | List List (Shortcut) | `tools.sh` |
-| **`conf`** | Zsh-Config bearbeiten (Smart: Code oder Nano) | `tools.sh` |
-| **`extract`** | Universal-Entpacker | `tools.sh` |
-| **`dotsync`** | Dotfiles Sync (Linux Version) | `tools.sh` |
+## 🛠️ Technische Voraussetzungen (Prerequisites)
+Um diese Konfigurationen vollumfänglich zu nutzen, werden folgende Basiskomponenten empfohlen:
+* **Shells**: PowerShell 7.x+ (Windows), ZSH (Linux/Unix).
+* **Tools**: Git, SSH-Client (OpenSSH), Curl/Wget.
+* **Terminal**: Windows Terminal oder Oh-My-Zsh Integration.
 
-## 🪟 Windows (PowerShell)
-
-### 📂 General
-| Befehl | Beschreibung | Datei |
-|---|---|---|
-| **`sysup`** | System-Update (Winget) | `tools.ps1` |
-| **`myip`** | Öffentliche IP anzeigen | `tools.ps1` |
-| **`ll`** | List List (wie ls -la) | `tools.ps1` |
-| **`conf`** | Config bearbeiten (Smart: Code oder Notepad) | `tools.ps1` |
-| **`dotsync`** | Dotfiles Sync (Windows Version) | `tools.ps1` |
-| **`netscan`** | Port Scanner (Python) | `tools.ps1` |
+## 🚀 Installation & Deployment
+### Windows (PowerShell)
+```powershell
+# Beispiel zur Einbindung des Profils
+. "$HOME\OPS-Systems\Windows-Core\profile.ps1"
