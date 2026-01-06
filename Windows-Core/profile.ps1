@@ -1,3 +1,8 @@
+# UTF-8 Support für korrekte Emoji-Darstellung im Dashboard
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# --------------------------------
+
 # --- Python Tools Integration ---
 # @doc: Startet den Python Port-Scanner (netscan.py)
 function netscan {
