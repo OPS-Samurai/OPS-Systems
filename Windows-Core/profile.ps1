@@ -1,5 +1,5 @@
 # JARVIS WINDOWS LOADER
-$JarvisRoot = "$env:USERPROFILE\dotfiles"
+$JarvisRoot = "$env:USERPROFILE\OPS-Systems"
 
 # 1. General laden
 Get-ChildItem "$JarvisRoot\powershell\general\*.ps1" | ForEach-Object { . $_.FullName }
@@ -8,4 +8,4 @@ Get-ChildItem "$JarvisRoot\powershell\general\*.ps1" | ForEach-Object { . $_.Ful
 Get-ChildItem "$JarvisRoot\powershell\hacking\*.ps1" | ForEach-Object { . $_.FullName }
 
 # 3. Python Pfad Info
-Write-Host "🐍 Python Module liegen in $JarvisRoot\python" -ForegroundColor Yellow
+Write-Host "Python Module liegen in $JarvisRoot\python" -ForegroundColor Yellow
