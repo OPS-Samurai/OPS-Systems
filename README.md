@@ -24,12 +24,6 @@ Modulare System-Konfiguration für Cybersec & Sysadmin.
 | **`extract`** | Universal-Entpacker | `tools.sh` |
 | **`dotsync`** | Dotfiles Sync (Linux Version) | `tools.sh` |
 
-### 📂 Hacking
-| Befehl | Beschreibung | Datei |
-|---|---|---|
-| **`myip`** | Zeigt öffentliche IP | `tools.sh` |
-| **`extract`** | Universal-Entpacker | `tools.sh` |
-
 ## 🪟 Windows (PowerShell)
 
 ### 📂 General
@@ -41,15 +35,3 @@ Modulare System-Konfiguration für Cybersec & Sysadmin.
 | **`conf`** | Config bearbeiten (Smart: Code oder Notepad) | `tools.ps1` |
 | **`dotsync`** | Dotfiles Sync (Windows Version) | `tools.ps1` |
 | **`netscan`** | Port Scanner (Python) | `tools.ps1` |
-
-### 📂 Hacking
-| Befehl | Beschreibung | Datei |
-|---|---|---|
-| **`Invoke-PortScan`** | Schneller TCP-Portscanner (Native PowerShell) | `portscan.ps1` |
-
-## 🐍 Python (Cross-Platform)
-
-### 📂 Hacking
-| Befehl | Beschreibung | Datei |
-|---|---|---|
-| **`netscan`** | Einfacher TCP Port-Scanner (Python) | `netscan.py` |
