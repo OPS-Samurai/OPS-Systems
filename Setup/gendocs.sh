@@ -1,4 +1,5 @@
 #!/bin/bash
+# @doc: Generiert README Dokumentation aus Zsh Konfigurationsdateien.
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 README="$SCRIPT_DIR/../README.md"

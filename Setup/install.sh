@@ -1,4 +1,5 @@
 #!/bin/bash
+# @doc: Installiert Zsh Dotfiles und Plugins auf Linux Systemen.
 
 # ==========================================
 # JARVIS DOTFILES INSTALLER (v2.0)

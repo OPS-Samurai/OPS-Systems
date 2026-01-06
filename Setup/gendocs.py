@@ -39,7 +39,33 @@ def parse_file(filepath, filename):
                 # Python Files haben meist nur eine Hauptfunktion, daher return okay
                 return [(f"**`{cmd_name}`**", desc, filename)]
 
-    # 🐚 Parser für Bash/PowerShell Funktionen
+    # 🐚 Erweiterter Parser für Bash/PowerShell Skripte (Dateibeschreibung oder Funktionen)
+    if filename.endswith((".sh", ".ps1")):
+        script_level_doc = None
+        for line in lines[:15]: # Suche nach einer Dateibeschreibung in den ersten Zeilen
+            if "# @doc:" in line:
+                script_level_doc = line.split("# @doc:", 1)[1].strip()
+                break
+
+        if filename == "profile.ps1":
+            # For profile.ps1, only document the netscan function, not the script itself
+            for line in lines:
+                line = line.strip()
+                if "# @doc:" in line:
+                    doc_buffer = line.split("# @doc:", 1)[1].strip()
+                elif doc_buffer and line and not line.startswith("#"):
+                    if "function netscan" in line:
+                        cmd = "netscan"
+                        entries.append((f"**`{cmd}`**", doc_buffer, filename))
+                        doc_buffer = None
+            return entries
+
+        if script_level_doc:
+            cmd_name = filename.replace(".sh", "").replace(".ps1", "")
+            entries.append((f"**`{cmd_name}`**", script_level_doc, filename))
+            return entries # Nur die Skript-Level Doku, keine internen Funktionen wenn Skript-Doku da ist
+
+    # Dann nach Funktionen/Aliasen suchen (wenn keine Skript-Level Doku gefunden wurde oder es kein .py ist)
     for line in lines:
         line = line.strip()
         # 1. Doku-Zeile finden
@@ -63,7 +89,7 @@ def generate():
         "# 🦅 Jarvis Dotfiles",
         "Modulare System-Konfiguration für Cybersec & Sysadmin.\n",
         "### 📚 Installation & Setup",
-        "| [🐧 Linux Guide](INSTALL_LINUX.md) | [🪟 Windows Guide](INSTALL_WINDOWS.md) |",
+        "| [🐧 Linux Guide](Setup/INSTALL_LINUX.md) | [🪟 Windows Guide](Setup/INSTALL_WINDOWS.md) |",
         "|:---:|:---:|",
         "\n---"
     ]
@@ -76,6 +102,8 @@ def generate():
             cmds = []
             for root, dirs, files in os.walk(sub_path):
                 for f in sorted(files):
+                    if f == "gendocs.py":
+                        continue
                     if f.endswith((".sh", ".ps1", ".py")):
                         cmds.extend(parse_file(os.path.join(root, f), f))
             
