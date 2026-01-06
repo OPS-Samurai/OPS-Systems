@@ -1,19 +1,24 @@
-# 🦅 Jarvis Dotfiles
-Modulare System-Konfiguration für Cybersec & Sysadmin.
+﻿#  Jarvis Dotfiles
 
-### 📚 Installation & Setup
-| [🐧 Linux Guide](INSTALL_LINUX.md) | [🪟 Windows Guide](INSTALL_WINDOWS.md) |
-|:---:|:---:|
+**Status:** Operational 
+**Standard:** ISO/IEC 26514 compliant documentation.
+**Architecture:** Modular Configuration Management for SysAdmins & Cybersec Analysts.
 
 ---
 
-## 🐧 Linux (Bash/Zsh)
+##  Installation & Deployment
+###  Windows (PowerShell)
+1. **Skripte erlauben:** \Set-ExecutionPolicy RemoteSigned -Scope CurrentUser\
+2. **Profil verbinden:** \Add-Content -Path $PROFILE -Value ". 'C:\Git\OPS-Systems\Windows-Core\profile.ps1'"\
 
-## 🪟 Windows (PowerShell)
+---
 
-## 🐍 Python (Cross-Platform)
+##  Integrierte Tools
+| Befehl | Beschreibung | Quelle |
+| :--- | :--- | :--- |
+| \
+etscan\ | TCP Port-Scanner | \C:\Git\Python-Tools\Network-Scanner\netscan.py\ |
+| \sysup\ | System-Update | \Setup/\ |
 
-### 📂 Tools
-| Befehl | Beschreibung | Datei |
-|---|---|---|
-| **`netscan`** | Einfacher TCP Port-Scanner (Python) | `netscan.py` |
+---
+> *"I am Iron Man."*  OPS-Samurai System Core.
