@@ -1,37 +1,51 @@
 # ==============================================
-# JARVIS MODULAR LOADER (v2 - Bulletproof)
+# OPS-SAMURAI ZSH CONFIG (The Brain)
 # ==============================================
 
 # 1. CORE SETTINGS
 autoload -Uz colors && colors
 setopt PROMPT_SUBST
+# Ihr Custom Prompt
 PROMPT='%F{cyan}┌──(%F{red}%n㉿%m%F{cyan})-[%F{yellow}%~%F{cyan}]
 └─%f$ '
 
+# History Settings (Optimiert für Kali)
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 setopt APPEND_HISTORY
 setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
 
-# 2. MODUL-LADER (Mit Fehler-Schutz)
-# Aktiviert nullglob, damit leere Ordner keinen Fehler werfen
+# 2. MODUL-LADER (Relativ & Robust)
+# Wir laden alle .sh Files aus dem bash-Unterordner
+# Pfad ist dynamisch basierend auf dem Standard ~/Git/OPS-Systems
 setopt nullglob
-
-# Lade Bash-Aliase und Tools (nur wenn lesbar)
-for config_file in ~/dotfiles/bash/**/*.sh; do
-    if [ -r "$config_file" ]; then
-        source "$config_file"
-    fi
+for config_file in ~/Git/OPS-Systems/Linux/bash/**/*.sh; do
+    [ -r "$config_file" ] && source "$config_file"
 done
-
-# Deaktiviert nullglob wieder (für Standard-Verhalten)
 unsetopt nullglob
 
 # 3. PYTHON PATH & TOOLS
-export PATH="$HOME/dotfiles/python/general:$HOME/dotfiles/python/hacking:$PATH"
+# Fügt Ihre Python-Tools automatisch zum Pfad hinzu
+export PATH="$HOME/Git/OPS-Systems/python/general:$HOME/Git/OPS-Systems/python/hacking:$PATH"
 
-# 4. PLUGINS
+# 4. PLUGINS LADEN (Nur laden, Installation macht das Setup-Skript)
+PLUGIN_DIR="$HOME/.zsh_plugins"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh_plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -f "$PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# 5. OPS-SAMURAI SYNC ENGINE
+dotsync() {
+    local msg="${1:-Manual Sync: $(date +'%Y-%m-%d %H:%M')}"
+    # Sicherheitscheck auf den Git-Ordner (Großgeschrieben)
+    if [[ "$PWD" == *"/Git/OPS-Systems"* ]]; then
+        echo -e "\e[36m🚀 Syncing OPS-Systems to GitHub & GitLab...\e[0m"
+        git add .
+        git commit -m "$msg"
+        git push origin main
+    else
+        echo -e "\e[31m⚠️  Fehler: Bitte in ~/Git/OPS-Systems ausführen!\e[0m"
+    fi
+}
