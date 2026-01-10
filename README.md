@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OPS-Systems
 
 Dieses Repository bündelt eine Sammlung von Konfigurationen, Skripten und Tools, die darauf abzielen, die Systemeinrichtung, Sicherheitsprotokolle und täglichen Betriebsabläufe auf verschiedenen Betriebssystemen (insbesondere Linux und Windows) zu optimieren und zu automatisieren. Es umfasst plattformübergreifende Einstellungen, Dotfiles für Linux (Zsh), PowerShell-Profile für Windows und Skripte zur Dokumentationsgenerierung.
@@ -67,3 +68,26 @@ Die Datei `Cross-Platform/VS-Code/settings.json` enthält empfohlene Einstellung
 ├── system_manifest.json
 └── system_profile.yaml
 ```
+=======
+# 🛡️ OPS-Systems (Samurai Edition)
+
+Zentrales Repository für Systemadministration, Cybersecurity-Tools und Cross-Platform Konfigurationen.
+
+## 📂 Struktur & Dokumentation
+
+Bitte konsultieren Sie die README-Dateien in den jeweiligen Unterordnern für spezifische Installationsanleitungen:
+
+### 🐧 [Linux / Kali](./Linux)
+* **Inhalt:** ZSH Config, Aliases, Gemini-AI Man-Page Translator.
+* **Setup:** Via `setup.sh` (siehe Ordner).
+
+### 🪟 [Windows Core](./Windows-Core)
+* **Inhalt:** PowerShell Profile, Module Loader.
+* **Setup:** Via PowerShell `$PROFILE` Verknüpfung.
+
+### 🌐 [Cross-Platform](./Cross-Platform)
+* **Inhalt:** VS Code Settings, globale Git-Ignors.
+
+---
+*Maintained by OPS-Samurai*
+>>>>>>> b44b1f9b062a6452013f71c9e397386707ff5d8c
