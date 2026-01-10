@@ -1,38 +1,21 @@
-# 🦅 Jarvis Dotfiles
+# 🛡️ OPS-Systems (Samurai Edition)
 
-**Status:** Operational 🟢  
-**Standard:** ISO/IEC 26514 compliant documentation.  
-**Architecture:** Modular Configuration Management for SysAdmins & Cybersec Analysts.
+Zentrales Repository für Systemadministration, Cybersecurity-Tools und Cross-Platform Konfigurationen.
+
+## 📂 Struktur & Dokumentation
+
+Bitte konsultieren Sie die README-Dateien in den jeweiligen Unterordnern für spezifische Installationsanleitungen:
+
+### 🐧 [Linux / Kali](./Linux)
+* **Inhalt:** ZSH Config, Aliases, Gemini-AI Man-Page Translator.
+* **Setup:** Via `setup.sh` (siehe Ordner).
+
+### 🪟 [Windows Core](./Windows-Core)
+* **Inhalt:** PowerShell Profile, Module Loader.
+* **Setup:** Via PowerShell `$PROFILE` Verknüpfung.
+
+### 🌐 [Cross-Platform](./Cross-Platform)
+* **Inhalt:** VS Code Settings, globale Git-Ignors.
 
 ---
-
-## 🛠️ Repository-Struktur
-Gemäß dem Masterplan für eine saubere Trennung von Betriebssystemen und Tools:
-
-* **`Linux/`**: Konfigurationen für Bash und ZSH (Aliase, Functions).
-* **`Windows-Core/`**: Das Herzstück der PowerShell-Umgebung (`profile.ps1`).
-* **`Cross-Platform/`**: Globale Settings für VS Code und Git-Ignors.
-* **`Setup/`**: Automatisierte Bootstrapping-Skripte für Neuinstallationen.
-
----
-
-## 🚀 Installation & Deployment
-
-### 🪟 Windows (PowerShell)
-Um Jarvis in Ihr lokales System einzubinden, nutzen wir den zentralen Workspace unter `C:\Git`.
-
-1.  **Skripte erlauben:**
-    ```powershell
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-    ```
-
-2.  **Profil verbinden (Loader):**
-    Führen Sie diesen Befehl aus, um die Konfiguration permanent zu verknüpfen:
-    ```powershell
-    Add-Content -Path $PROFILE -Value ". 'C:\Git\OPS-Systems\Windows-Core\profile.ps1'"
-    ```
-
-### 🐧 Linux (Bash/Zsh)
-Verknüpfen Sie die zentrale Konfiguration mit Ihrem Home-Verzeichnis:
-```bash
-ln -s /path/to/OPS-Systems/Linux/.zshrc ~/.zshrc
+*Maintained by OPS-Samurai*
