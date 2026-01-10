@@ -19,3 +19,7 @@ _keys/
 .idea/
 __pycache__/
 *.pyc
+
+system_manifest.json
+system_profile.yaml
+alias_export.csv
