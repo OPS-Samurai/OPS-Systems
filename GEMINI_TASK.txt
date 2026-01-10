@@ -1,0 +1,152 @@
+﻿Du bist ein Senior Technical Writer. Erstelle eine professionelle README.md (Markdown) fÃ¼r 'OPS-Systems'.
+Sprache: Deutsch.
+
+ANFORDERUNGEN:
+1. Titel & Zusammenfassung
+2. Installationsanleitung (AbhÃ¤ngigkeiten erkennen)
+3. Tabelle der Skripte (Dateiname | Funktion | Beschreibung)
+4. Ordnerstruktur
+
+KONTEXT:
+STRUKTUR:\Cross-Platform
+\Linux
+\Setup
+\Windows-Core
+\alias_export.csv
+\GEMINI_TASK.txt
+\README.md
+\system_manifest.json
+\system_profile.yaml
+\Cross-Platform\Git
+\Cross-Platform\VS-Code
+\Cross-Platform\VS-Code\settings.json
+\Linux\setup.sh
+\Linux\zshrc
+\Setup\gendocs.py
+\Setup\gendocs.sh
+\Setup\install.sh
+\Setup\INSTALL_LINUX.md
+\Setup\INSTALL_WINDOWS.md
+\Windows-Core\profile.ps1
+
+DATEI-INHALTE:
+
+--- DATEI: \Cross-Platform\VS-Code\settings.json ---
+{
+    "debug.openDebug":  "openOnDebugBreak",
+    "editor.tabCompletion":  "off",
+    "files.defaultLanguage":  "",
+    "editor.wordSeparators":  "`~!@#$%^\u0026*()-=+[{]}\\|;:\u0027\",.\u003c\u003e/?",
+    "powershell.buttons.showPanelMovementButtons":  false,
+    "powershell.codeFolding.showLastLine":  true,
+    "snyk.advanced.cliPath":  "C:\\Users\\NGonc\\AppData\\Local\\snyk\\vscode-cli\\snyk-win.exe",
+    "snyk.securityAtInception.autoConfigureSnykMcpServer":  true,
+    "snyk.securityAtInception.executionFrequency":  "On Code Generation",
+    "snyk.trustedFolders": null,
+    "errorLens.enabled":  true,
+    "powershell.sideBar.CommandExplorerVisibility":  true,
+    "workbench.enableExperiments":  false,
+    "powershell.integratedConsole.showStartBanner":  false,
+
+--- DATEI: \Linux\setup.sh ---
+#!/bin/bash
+# ==========================================
+# OPS-SAMURAI INSTALLER (v3.0 - Hybrid)
+# ==========================================
+# Installiert Zsh, Plugins und verlinkt die Config aus dem Git-Repo.
+
+# Farben
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${BLUE}ðŸ—¡ï¸  [Jarvis] Starte System-Initialisierung...${NC}"
+
+# 1. System-Updates & AbhÃ¤ngigkeiten (Aus Screenshot Ã¼bernommen - Besser!)
+
+--- DATEI: \Setup\gendocs.py ---
+import os
+
+# The root directory of all git projects is the parent of the 'OPS-Systems' folder
+REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+README = os.path.join(REPO, "OPS-Systems", "README.md")
+
+# The structure of the modules, pointing to the correct repositories
+STRUCTURE = {
+    "ðŸ§ Linux (Bash/Zsh)": {
+        "Toolkit": os.path.join(REPO, "Bash-Toolkit", "scripts"),
+        "RedTeam": os.path.join(REPO, "Bash-RedTeam-Scripts")
+    },
+    "ðŸªŸ Windows (PowerShell)": {
+        "Toolkit": os.path.join(REPO, "PowerShell-Toolkit"),
+        "Offensive": os.path.join(REPO, "PowerShell-Offensive")
+
+--- DATEI: \Setup\gendocs.sh ---
+#!/bin/bash
+# @doc: Generiert README Dokumentation aus Zsh Konfigurationsdateien.
+
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+README="$SCRIPT_DIR/../README.md"
+ZSHRC="$SCRIPT_DIR/../Linux/zshrc"
+
+echo "âš™ï¸ [Jarvis] Generiere Dokumentation..."
+
+# Header schreiben
+echo "# ðŸ¦… Jarvis Dotfiles" > "$README"
+echo "Automated System Configuration." >> "$README"
+echo "" >> "$README"
+echo "## ðŸ›  VerfÃ¼gbare Befehle" >> "$README"
+echo "| Befehl | Beschreibung |" >> "$README"
+
+--- DATEI: \Setup\install.sh ---
+#!/bin/bash
+# @doc: Installiert Zsh Dotfiles und Plugins auf Linux Systemen.
+
+# ==========================================
+# JARVIS DOTFILES INSTALLER (v2.0)
+# ==========================================
+
+# Farben fÃ¼r Output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}ðŸš€ [Jarvis] Starte Deployment-Protokoll...${NC}"
+
+# 1. System-Updates & AbhÃ¤ngigkeiten
+
+--- DATEI: \Windows-Core\profile.ps1 ---
+# UTF-8 Support fÃ¼r korrekte Emoji-Darstellung im Dashboard
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# --------------------------------
+
+# --- Python Tools Integration ---
+# @doc: Startet den Python Port-Scanner (netscan.py)
+function netscan {
+    python "C:\Git\Python-Tools\Network-Scanner\netscan.py" @args
+}
+# --------------------------------
+
+
+
+# --- Daily Dashboard ---
+
+--- DATEI: \system_manifest.json ---
+[
+  {
+    "Name": "Bash-RedTeam-Scripts",
+    "FullName": "C:\\Git\\Bash-RedTeam-Scripts"
+  },
+  {
+    "Name": "Bash-Toolkit",
+    "FullName": "C:\\Git\\Bash-Toolkit"
+  },
+  {
+    "Name": "Network-Security-Tools",
+    "FullName": "C:\\Git\\Network-Security-Tools"
+  },
+  {
+    "Name": "OPS-Systems",
+
