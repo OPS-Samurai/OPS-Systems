@@ -1,48 +1,66 @@
-<<<<<<< HEAD
-# OPS-Systems
+# 🚀 OPS-Systems
 
-Dieses Repository bündelt eine Sammlung von Konfigurationen, Skripten und Tools, die darauf abzielen, die Systemeinrichtung, Sicherheitsprotokolle und täglichen Betriebsabläufe auf verschiedenen Betriebssystemen (insbesondere Linux und Windows) zu optimieren und zu automatisieren. Es umfasst plattformübergreifende Einstellungen, Dotfiles für Linux (Zsh), PowerShell-Profile für Windows und Skripte zur Dokumentationsgenerierung.
+### Executive Summary
 
-## Installation
+This repository centralizes a collection of configurations, scripts, and tools designed to optimize and automate system setup, security protocols, and daily operations across various operating systems, primarily Linux and Windows. It encompasses cross-platform settings, Dotfiles for Linux (Zsh), PowerShell profiles for Windows, and documentation generation scripts, all managed under ISO/IEC 26514 compliant documentation standards.
 
-Die Installation hängt vom jeweiligen Betriebssystem und den gewünschten Komponenten ab.
+### Installation/Setup
 
-### Linux
+Installation procedures are dependent on the specific operating system and desired components. Virtual environments are highly recommended for Python-based tools.
 
-Für Linux-Systeme bieten die `setup.sh` und `install.sh` Skripte im `Linux/` und `Setup/` Verzeichnis eine automatisierte Einrichtung von Zsh, zugehörigen Plugins und der Verknüpfung von Konfigurationsdateien.
+#### Linux
 
-1.  **Voraussetzungen:** `git`, `zsh`, `python` (für Dokumentationsgenerierung).
-2.  **Installation:**
+For Linux systems, the `setup.sh` and `install.sh` scripts located in the `Linux/` and `Setup/` directories, respectively, provide automated setup for Zsh, its plugins, and configuration file linking.
+
+1.  **Prerequisites:** `git`, `zsh`, `python` (for documentation generation).
+2.  **Installation Commands:**
     ```bash
-    # Beispiel für die Ausführung des Setup-Skripts
+    # Example for running the setup script
     ./Linux/setup.sh
-    # Oder das allgemeine Installer-Skript
+    # Or the general installer script
     ./Setup/install.sh
     ```
 
-### Windows
+#### Windows
 
-Das PowerShell-Profil `Windows-Core/profile.ps1` integriert verschiedene Funktionen und Tools, einschließlich einer Anbindung an Python-basierte Netzwerkscanner.
+The PowerShell profile `Windows-Core/profile.ps1` integrates various functionalities and tools, including an interface to Python-based network scanners.
 
-1.  **Voraussetzungen:** `Python` (für `netscan.py` im `Python-Tools` Repository).
-2.  **Einrichtung:** Kopieren Sie den Inhalt von `profile.ps1` in Ihr PowerShell-Profil oder verlinken Sie es entsprechend.
+1.  **Prerequisites:** `Python` (for `netscan.py` from the `Python-Tools` repository).
+2.  **Setup:** Copy the content of `profile.ps1` into your PowerShell profile or link it accordingly.
 
-### VS Code
+#### VS Code
 
-Die Datei `Cross-Platform/VS-Code/settings.json` enthält empfohlene Einstellungen für Visual Studio Code zur Optimierung der Entwicklungsumgebung.
+The `Cross-Platform/VS-Code/settings.json` file contains recommended settings for Visual Studio Code to optimize the development environment.
 
-## Skripte & Funktionen
+### Usage
 
-| Dateiname                   | Funktion                                           | Beschreibung                                                                                              |
-| :-------------------------- | :------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
-| `Linux/setup.sh`            | System-Initialisierung für Linux                   | Installiert Zsh, Zsh-Plugins und verlinkt Konfigurationsdateien aus dem Git-Repository.                 |
-| `Linux/zshrc`               | Zsh-Konfigurationsdatei                            | Hauptkonfigurationsdatei für die Zsh-Shell, beinhaltet Aliase, Funktionen und Plugin-Einstellungen.      |
-| `Setup/gendocs.py`          | Dokumentation generieren (Python)                  | Ein Python-Skript zur automatisierten Generierung von README-Dokumentationen basierend auf der Projektstruktur und Dateiinhalten. |
-| `Setup/gendocs.sh`          | Dokumentation generieren (Bash)                    | Ein Bash-Skript, das README-Dokumentation aus Zsh-Konfigurationsdateien extrahiert und generiert.         |
-| `Setup/install.sh`          | Zsh Dotfiles und Plugins installieren (Linux)      | Umfassendes Installationsskript zur Einrichtung der Zsh-Dotfiles und zugehöriger Plugins auf Linux-Systemen. |
-| `Windows-Core/profile.ps1`  | PowerShell-Profil & Python-Tools-Integration       | Konfiguriert das PowerShell-Profil für Windows, inklusive Integration von Python-basierten Tools wie `netscan.py`. |
+#### Linux Scripts
 
-## Ordnerstruktur
+*   `Linux/setup.sh`: Initiates system setup, installing Zsh, plugins, and linking configuration from the Git repo. Also handles system updates and dependencies.
+*   `Linux/zshrc`: The primary configuration file for the Zsh shell, including aliases, functions, and plugin settings.
+
+#### Setup Scripts
+
+*   `Setup/gendocs.py`: A Python script for automated README documentation generation based on project structure and file contents. It defines the repository structure and points to relevant repos for documentation.
+*   `Setup/gendocs.sh`: A Bash script that extracts and generates README documentation from Zsh configuration files.
+*   `Setup/install.sh`: A comprehensive installation script for setting up Zsh dotfiles and associated plugins on Linux systems, handling system updates and dependencies.
+
+#### Windows Scripts
+
+*   `Windows-Core/profile.ps1`: Configures the PowerShell profile for Windows, including UTF-8 support and integration for Python tools like `netscan.py`.
+
+### Inventory
+
+| File                      | Description                                                                                                                                                                                             |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Linux/setup.sh`          | Installs Zsh, plugins, and links configuration from the Git repo. Also handles system updates and dependencies.                                                                                       |
+| `Linux/zshrc`             | Main Zsh configuration file, including aliases, functions, and plugin settings.                                                                                                                         |
+| `Setup/gendocs.py`        | Python script for automated README documentation generation based on project structure and file contents. It defines the repository structure and points to relevant repos for documentation. |
+| `Setup/gendocs.sh`        | Bash script that extracts and generates README documentation from Zsh configuration files.                                                                                                                |
+| `Setup/install.sh`        | Comprehensive installer for Zsh dotfiles and plugins on Linux systems, handling system updates and dependencies.                                                                                          |
+| `Windows-Core/profile.ps1`| PowerShell profile for Windows, including UTF-8 support and integration for Python tools like `netscan.py`.                                                                                             |
+
+### Ordnerstruktur
 
 ```
 .
@@ -68,26 +86,6 @@ Die Datei `Cross-Platform/VS-Code/settings.json` enthält empfohlene Einstellung
 ├── system_manifest.json
 └── system_profile.yaml
 ```
-=======
-# 🛡️ OPS-Systems (Samurai Edition)
-
-Zentrales Repository für Systemadministration, Cybersecurity-Tools und Cross-Platform Konfigurationen.
-
-## 📂 Struktur & Dokumentation
-
-Bitte konsultieren Sie die README-Dateien in den jeweiligen Unterordnern für spezifische Installationsanleitungen:
-
-### 🐧 [Linux / Kali](./Linux)
-* **Inhalt:** ZSH Config, Aliases, Gemini-AI Man-Page Translator.
-* **Setup:** Via `setup.sh` (siehe Ordner).
-
-### 🪟 [Windows Core](./Windows-Core)
-* **Inhalt:** PowerShell Profile, Module Loader.
-* **Setup:** Via PowerShell `$PROFILE` Verknüpfung.
-
-### 🌐 [Cross-Platform](./Cross-Platform)
-* **Inhalt:** VS Code Settings, globale Git-Ignors.
 
 ---
-*Maintained by OPS-Samurai*
->>>>>>> b44b1f9b062a6452013f71c9e397386707ff5d8c
+All systems are managed under ISO/IEC 26514 compliant documentation standards.

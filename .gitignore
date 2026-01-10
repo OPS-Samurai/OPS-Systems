@@ -1,2 +1,21 @@
-.DS_Store
+﻿.DS_Store
 *.swp
+# --- JARVIS SECURITY & AUTO-GEN ---
+GEMINI_TASK.txt
+*.log
+*.tmp
+*.bak
+Thumbs.db
+# --- CREDENTIALS & SECRETS (BLOCKLIST) ---
+*.env
+secrets.json
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+_keys/
+# --- IDE & OS ---
+.vscode/
+.idea/
+__pycache__/
+*.pyc
