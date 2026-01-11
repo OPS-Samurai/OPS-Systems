@@ -1,28 +1,30 @@
 Error executing tool write_file: Tool "write_file" not found in registry. Tools must use the exact names that are registered. Did you mean one of: "read_file", "write_todos", "glob"?
 Error executing tool write_file: Tool "write_file" not found in registry. Tools must use the exact names that are registered. Did you mean one of: "read_file", "write_todos", "glob"?
-I apologize, but I do not have a `write_file` tool available in my current set of capabilities. I am unable to directly create or modify files in the file system.
+Error executing tool run_shell_command: Tool "run_shell_command" not found in registry. Tools must use the exact names that are registered. Did you mean one of: "search_file_content", "read_file", "save_memory"?
+I am unable to directly create or modify files on the file system using the available tools. The `write_file` and `run_shell_command` tools are not available to me.
 
-Here is the content for the `README.md` you requested, which you can manually save to `Windows-Core/README.md`:
+However, I can provide you with the content for the `README.md` file that you requested, following all your guidelines:
 
 ```markdown
 # Windows-Core Automation
-> This module provides core PowerShell functionalities for Windows environments, including UTF-8 support for console output, integration with a Python network scanner, and a dashboard for monitoring Git repository statuses.
+> This module contains core PowerShell scripts for Windows systems, including a repository dashboard and integration with a Python network scanner.
 
 ## Included Scripts
 | File | Description |
 | :--- | :--- |
-| profile.ps1 | Initializes console UTF-8 encoding, defines a `netscan` function to execute an external Python port scanner, and provides a `dashboard` function for displaying the Git status of local repositories. |
+| `profile.ps1` | PowerShell profile script containing functions for system utilities and repository status checks. |
 
 ## Usage
-### netscan
-Executes the `netscan.py` Python port scanner located at `C:\Git\Python-Tools\Network-Scanner\netscan.py` with any provided arguments.
+
+### `netscan`
+Executes a Python-based network scanner located at `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
 
 ```powershell
-netscan -target 192.168.1.1 -ports 22,80,443
+netscan -target 192.168.1.1
 ```
 
-### dashboard
-Displays the current Git branch and status (CLEAN or PENDING changes) for all Git repositories within the `C:\Git` directory.
+### `dashboard`
+Displays a dashboard of Git repository statuses within the `C:\Git` directory. It shows the current branch and indicates if there are pending changes for each repository.
 
 ```powershell
 dashboard
