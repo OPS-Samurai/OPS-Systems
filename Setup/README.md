@@ -1,55 +1,44 @@
-## **ISO Documentation: `setup.sh` - Zsh Environment Installer**
+# 📝 OPS-SAMURAI Installer Script
+This script automates the initial setup for an OPS-SAMURAI environment, focusing on Zsh, its plugins, and linking configuration files from the Git repository. It includes self-healing logic for plugin installation and intelligent backup handling for existing configuration files.
 
----
+## 🛠️ Prerequisites
+- A Debian/Ubuntu-based system with `apt` package manager installed.
+- Internet connectivity for cloning Git repositories and downloading packages.
 
-#### **1. Overview**
+The script will attempt to install the following packages if `apt` is found:
+- `zsh`
+- `git`
+- `curl`
+- `unzip`
 
-The `setup.sh` script is a hybrid installer designed to automate the configuration of a Zsh (Z Shell) environment on a Linux-based system. Its primary function is to prepare the system by installing necessary dependencies, deploying essential Zsh plugins, and linking a custom `zshrc` configuration file from this repository to the user's home directory.
+## ⚙️ Technical Details
+The `setup.sh` script performs the following operations:
+1.  **System Initialization & Package Check:**
+    *   Checks for the presence of the `apt` package manager.
+    *   If `apt` is available, it performs a system update (`sudo apt update`) and installs essential packages (`zsh`, `git`, `curl`, `unzip`). If `apt` is not found, this step is skipped.
+2.  **Plugin Installation (Self-Healing):**
+    *   Ensures the existence of the `~/.zsh_plugins` directory.
+    *   Checks if `zsh-syntax-highlighting` is present in the plugin directory. If not, it clones the repository from `https://github.com/zsh-users/zsh-syntax-highlighting.git`.
+    *   Checks if `zsh-autosuggestions` is present in the plugin directory. If not, it clones the repository from `https://github.com/zsh-users/zsh-autosuggestions.git`.
+3.  **Configuration File Linking (Intelligent Backup):**
+    *   Dynamically determines the script's directory to locate the source `zshrc` file within the repository.
+    *   Sets the target for the symbolic link to `~/.zshrc`.
+    *   Verifies that the source `zshrc` file exists; otherwise, the script exits with an error.
+    *   If an existing `~/.zshrc` file is found and it is not already a symbolic link, a timestamped backup is created (e.g., `~/.zshrc.backup.<timestamp>`).
+    *   A symbolic link is created (or updated, with force overwrite) from the repository's `zshrc` file to `~/.zshrc`.
+4.  **Completion:**
+    *   Informs the user that deployment is complete and prompts to restart the shell to apply changes.
 
-The script is designed with safety and idempotency in mind:
-*   **Dependency Management**: It attempts to install required packages (`zsh`, `git`, `curl`, `unzip`) using the `apt` package manager.
-*   **Idempotent Plugin Installation**: It checks for the existence of plugins before attempting to download them, preventing redundant operations.
-*   **Safe Configuration Linking**: It automatically backs up any existing `.zshrc` file before creating a symbolic link, preventing accidental data loss.
-*   **Dynamic Path Resolution**: It intelligently locates the source configuration file relative to its own position, ensuring it works regardless of where the repository is cloned.
+## 🚀 Usage (Examples)
+To execute the installer script, navigate to the `Setup` directory and run the script:
 
----
+```bash
+cd Setup/
+bash setup.sh
+```
 
-#### **2. Prerequisites**
+After successful execution, restart your Zsh shell to load the new configuration and plugins:
 
-To ensure the script runs successfully, the following conditions must be met:
-
-*   **Operating System**: A Debian-based Linux distribution (e.g., Ubuntu, Debian) with the `apt` package manager is recommended. The script contains a fallback for other systems, but the automatic installation of dependencies will be skipped.
-*   **User Permissions**: The user must have `sudo` privileges, as the script requires administrative rights to update the system and install packages.
-*   **Required Tools**: `git` must be installed or installable on the system for cloning Zsh plugins.
-*   **Repository Structure**: The script requires the source `zshrc` configuration file to be present in the same directory (`/Setup`) from which the script is executed.
-
----
-
-#### **3. Usage**
-
-Follow these steps to execute the installer script:
-
-1.  **Navigate to the Script Directory**:
-    Open a terminal and change to the directory containing the script.
-    ```bash
-    cd Setup/
-    ```
-
-2.  **Make the Script Executable**:
-    Grant execution permissions to the script file.
-    ```bash
-    chmod +x setup.sh
-    ```
-
-3.  **Run the Installer**:
-    Execute the script. You will be prompted for your `sudo` password to proceed with package installation.
-    ```bash
-    ./setup.sh
-    ```
-    The script will display its progress as it updates packages, clones plugins, and links the configuration file.
-
-4.  **Reload Shell**:
-    After the script completes successfully, you must restart your terminal or run the following command to load the new Zsh configuration:
-    ```bash
-    zsh
-    ```
+```bash
+zsh
+```

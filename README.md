@@ -1,6 +1,9 @@
+# 🏗️ OPS-Systems Architecture
+> This repository consolidates system configurations, scripts, and documentation for various operating systems, ensuring consistent and efficient setup and management across different environments.
+## 📂 Sub-Repositories
 | Repository | Focus & Purpose | Status |
 | :--- | :--- | :--- |
-| Cross-Platform | Specialized framework for infrastructure management and standardized operations, with automated modules for Git and VS-Code. | Active |
-| Linux | Zsh shell configuration optimized for system administration and development on Kali Linux, including history, plugins, Python path, and GitHub/GitLab sync. | Active |
-| Setup | Hybrid installer script (`setup.sh`) for automating Zsh environment configuration on Linux, managing dependencies, plugins, and `zshrc` linking. | Active |
-| Windows-Core | PowerShell profile script (`profile.ps1`) enhancing terminal experience with UTF-8 support, Python tool integration (`netscan`), and a Git repository dashboard. | Active |
+| [📁 Cross-Platform](./Cross-Platform/) | Contains configurations and scripts applicable across multiple operating systems. | Active |
+| [📁 Linux](./Linux/) | Houses specific configurations and utilities tailored for Linux environments. | Active |
+| [📁 Setup](./Setup/) | Includes initial setup scripts and installation routines for new environments. | Active |
+| [📁 Windows-Core](./Windows-Core/) | Provides core configurations and scripts specifically for Windows operating systems. | Active |

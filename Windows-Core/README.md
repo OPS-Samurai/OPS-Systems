@@ -1,62 +1,56 @@
-## PowerShell Profile (`profile.ps1`)
+# 📝 profile.ps1
+This PowerShell script provides utility functions designed to integrate external tools and display repository statuses.
 
-### 1. Overview
+## 🛠️ Prerequisites
+- PowerShell environment.
+- Git command-line tools must be installed and accessible in the system's PATH.
+- Python runtime must be installed for Python-based tools.
 
-This PowerShell script serves as a profile script, executed automatically at the start of each PowerShell session. It enhances the terminal experience with custom functions and settings.
+---
 
-The primary features include:
--   **UTF-8 Support**: Configures the console to correctly display UTF-8 characters, which is essential for modern multilingual text and emojis.
--   **Python Tool Integration**: Provides a convenient alias (`netscan`) to execute a Python-based network scanning tool.
--   **Git Repository Dashboard**: Introduces a `dashboard` function that provides a quick, at-a-glance overview of the status of all Git repositories located in a specified directory (`C:\Git`).
+## ⚙️ Technical Details
 
-### 2. Prerequisites
+### `netscan` Function
+A wrapper function to execute the Python-based port scanner `netscan.py`.
 
-Before using this script, ensure the following requirements are met:
+- **Alias:** `netscan`
+- **Functionality:** It forwards all provided arguments (`@args`) directly to the Python script.
+- **Dependency:** Requires the script to be located at `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
 
--   **Operating System**: Windows with PowerShell.
--   **Git**: Git must be installed and accessible from the command line for the `dashboard` function to work correctly.
--   **Python**: A Python installation is required to use the `netscan` function.
--   **Repository Directory**: The `dashboard` function expects a root directory at `C:\Git` containing multiple Git repositories.
--   **Python Script**: The `netscan` function requires the existence of the script at `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
+### `dashboard` Function
+Displays a summary of the Git status for all repositories located in a specified directory.
 
-### 3. Usage
+- **Alias:** `dashboard`
+- **Functionality:**
+    - Iterates through each subdirectory within `C:\Git`.
+    - For each directory, it retrieves the current Git branch and status.
+    - It prints a formatted line showing the repository name, current branch, and status.
+- **Status Indicators:**
+    - **CLEAN** (Green): The repository has no pending changes.
+    - **PENDING** (Yellow): The repository has unstaged or uncommitted changes.
 
-Since this is a profile script, the functions defined within it are automatically available in your PowerShell session.
+## 🚀 Usage
 
-#### **`dashboard` Function**
+### Example 1: Using `netscan`
+To scan a specific IP address and port range, pass them as arguments.
 
-This function scans all Git repositories located under `C:\Git` and reports their current status.
+```powershell
+netscan 192.168.1.1 -p 22,80,443
+```
 
-**Command:**
+### Example 2: Displaying the Dashboard
+To view the status of all repositories:
+
 ```powershell
 dashboard
 ```
 
-**Output:**
-The command lists each repository, its current branch, and its status:
--   **CLEAN** (Green): The working directory is clean; there are no uncommitted changes.
--   **PENDING** (Yellow): There are uncommitted changes in the working directory.
+**Example Output:**
 
-Example:
 ```
 --- 🦅 JARVIS REPOSITORY DASHBOARD ---
 [OPS-Systems                ] (main      ) -> CLEAN
-[My-Project                 ] (develop   ) -> PENDING
+[Project-X                  ] (develop   ) -> PENDING
+[API-Service                ] (feature/auth) -> CLEAN
 ---------------------------------------
 ```
-
-#### **`netscan` Function**
-
-This function acts as a shortcut to run the `netscan.py` Python script. It passes any arguments directly to the Python script.
-
-**Command:**
-```powershell
-netscan [arguments]
-```
-
-**Example:**
-To scan a specific IP range, you might use:
-```powershell
-netscan 192.168.1.1/24
-```
-*(Note: The exact arguments depend on the implementation of `netscan.py`)*

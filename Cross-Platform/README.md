@@ -1,11 +1,7 @@
-# Cross-Platform Architecture
-
-Specialized framework for infrastructure management and standardized operations.
-
+# 🏗️ Cross-Platform Architecture
+> Centralized configurations and scripts designed for cross-operating system compatibility, ensuring a consistent development environment across different platforms.
+## 📂 Sub-Repositories
 | Repository | Focus & Purpose | Status |
 | :--- | :--- | :--- |
-| [**Git**](./Git/) | Automated module. | Active |
-| [**VS-Code**](./VS-Code/) | Automated module. | Active |
-
----
-> All systems are managed under ISO/IEC 26514 compliant documentation standards via Local AI.
+| [📁 Git](./Git/) | Global Git configurations and settings. | Active/Stable |
+| [📁 VS-Code](./VS-Code/) | Visual Studio Code settings and extensions. | Active/Stable |
