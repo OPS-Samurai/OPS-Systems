@@ -1,41 +1,35 @@
-# 💻 setup.sh Control Module
-> This script automates the installation and configuration of Zsh, including essential plugins, and links the Zsh configuration file from the Git repository to the user's home directory.
-
+# 💻 OPS-SAMURAI INSTALLER Control Module
 ## 🛠️ Prerequisites
--   **Operating System**: Debian/Ubuntu-based Linux distribution (due to `apt` package manager usage).
--   **Tools**: `sudo`, `apt` (for package installation), `git`, `curl`, `unzip`.
--   **User Permissions**: The script utilizes `sudo` for system package installations, requiring appropriate user privileges.
+- A Debian-based Linux distribution with `apt` package manager for automatic dependency installation.
+- `sudo` privileges may be required for package installation.
+- Internet connectivity to clone Git repositories for Zsh plugins.
 
 ## ⚙️ Technical Details
-The script performs the following operations:
+This script, `setup.sh`, automates the initial setup for a Zsh environment, including system updates, package installation, Zsh plugin deployment, and configuration file management.
 
 1.  **System Initialization**:
+    *   Initiates the setup process with a system initialization message.
+2.  **Package Verification & Installation**:
     *   Checks for the presence of the `apt` package manager.
-    *   If `apt` is found, it updates the package list (`sudo apt update`) and installs `zsh`, `git`, `curl`, and `unzip` if they are not already present (`sudo apt install -y ...`).
-    *   If `apt` is not found, a warning message is displayed, and package installation is skipped.
-2.  **Plugin Installation**:
-    *   Creates a directory `$HOME/.zsh_plugins` if it does not exist.
-    *   **Zsh Syntax Highlighting**: Clones the `zsh-users/zsh-syntax-highlighting` repository into `$HOME/.zsh_plugins/zsh-syntax-highlighting` if the directory does not exist.
-    *   **Zsh Autosuggestions**: Clones the `zsh-users/zsh-autosuggestions` repository into `$HOME/.zsh_plugins/zsh-autosuggestions` if the directory does not exist.
-3.  **Configuration File Linking**:
-    *   Determines the absolute path of the `zshrc` configuration file within the current script's directory.
-    *   Verifies that the source `zshrc` file exists; otherwise, it exits with an error.
-    *   **Backup**: If a file named `$HOME/.zshrc` exists and is not already a symbolic link, it creates a backup of the existing file, appending `.backup.` and a Unix timestamp to its name.
-    *   **Symlink Creation**: Creates a symbolic link from the repository's `zshrc` file to `$HOME/.zshrc`, overwriting any existing link or file with the `-sf` flag.
+    *   If `apt` is available, it performs a system update (`sudo apt update`) and installs essential packages: `zsh`, `git`, `curl`, and `unzip`.
+    *   If `apt` is not found, a warning is issued, and package installation is skipped.
+3.  **Zsh Plugin Deployment**:
+    *   Ensures the existence of the `$HOME/.zsh_plugins` directory.
+    *   Clones `zsh-syntax-highlighting` from `https://github.com/zsh-users/zsh-syntax-highlighting.git` into `$HOME/.zsh_plugins/zsh-syntax-highlighting` if not already present.
+    *   Clones `zsh-autosuggestions` from `https://github.com/zsh-users/zsh-autosuggestions.git` into `$HOME/.zsh_plugins/zsh-autosuggestions` if not already present.
+4.  **Configuration Symlink Management**:
+    *   Identifies the target Zsh configuration file as `$HOME/.zshrc`.
+    *   Determines the source `zshrc` configuration file relative to the script's location.
+    *   Verifies that the source configuration file exists; otherwise, the script terminates with an error.
+    *   **Backup Procedure**: If an existing non-symlinked `$HOME/.zshrc` file is found, a timestamped backup is created (e.g., `$HOME/.zshrc.backup.<timestamp>`).
+    *   **Symlink Creation**: Creates or updates a symbolic link from the source `zshrc` to `$HOME/.zshrc`, ensuring the user's Zsh configuration is managed from the Git repository.
 
 ## 🚀 Usage Protocols
-To execute the script:
-
-1.  Navigate to the directory containing `setup.sh` (e.g., `cd Setup`).
-2.  Make the script executable if necessary:
-    ```bash
-    chmod +x setup.sh
-    ```
-3.  Run the script from the terminal:
+1.  **Execution**: Navigate to the directory containing `setup.sh` and execute the script from a bash-compatible shell:
     ```bash
     ./setup.sh
     ```
-4.  After the script completes, restart your shell for the changes to take effect:
+2.  **Post-Installation**: After the script completes, restart your shell session to apply the new Zsh configuration and loaded plugins. This can typically be done by running:
     ```bash
     zsh
     ```
