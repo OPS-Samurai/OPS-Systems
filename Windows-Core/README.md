@@ -1,25 +1,39 @@
 # 💻 netscan Control Module
 ## 🛠️ Prerequisites
-- Python environment installed and configured.
-- `netscan.py` script available at `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
+- Python installed and accessible in the system's PATH.
+- The `netscan.py` script available at `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
 
 ## ⚙️ Technical Details
-This module provides a convenient wrapper to execute the `netscan.py` Python script. It facilitates the execution of a Python-based port scanner by passing any provided arguments directly to the underlying Python script. The `Console::OutputEncoding` is set to UTF-8 to ensure proper character display.
+This module executes the Python script `netscan.py` located in the `C:\Git\Python-Tools\Network-Scanner\` directory. It passes any provided arguments directly to the Python script.
 
 ## 🚀 Usage Protocols
-To initiate the network scan, invoke the `netscan` command, optionally followed by arguments intended for the `netscan.py` Python script.
+To use the netscan module, execute:
+```powershell
+netscan [arguments]
+```
+Replace `[arguments]` with any parameters required by the `netscan.py` script.
 
-`netscan <python_script_arguments>`
+---
 
 # 💻 dashboard Control Module
 ## 🛠️ Prerequisites
-- Git version control system installed and configured.
-- Git repositories are expected to reside within the `C:\Git` directory.
+- Git installed and configured on the system.
+- PowerShell environment.
+- The base directory `C:\Git` must exist and contain Git repositories.
 
 ## ⚙️ Technical Details
-The `dashboard` module provides an overview of the status of local Git repositories. It iterates through each subdirectory within `C:\Git`, treating them as Git repositories. For each repository, it retrieves the current branch and checks for pending changes using `git status --porcelain`. The output presents each repository's name, its active branch, and an indicator ("CLEAN" for no pending changes, "PENDING" for uncommitted modifications), color-coded for quick visual assessment. The `Console::OutputEncoding` is set to UTF-8 to ensure proper character display.
+This module provides a summary dashboard for Git repositories located under `C:\Git`.
+- Sets `[Console]::OutputEncoding` to `[System.Text.Encoding]::UTF8` for correct emoji display.
+- Iterates through each subdirectory within `C:\Git`.
+- For each directory, it performs the following Git operations:
+    - `git status --porcelain`: Checks for uncommitted changes.
+    - `git branch --show-current`: Retrieves the active branch name.
+- Based on the Git status, it displays the repository name, current branch, and an indicator (`PENDING` or `CLEAN`) with color-coded feedback (Yellow for `PENDING`, Green for `CLEAN`).
+- Utilizes `Push-Location` and `Pop-Location` to safely navigate into and out of each repository directory during the status check.
 
 ## 🚀 Usage Protocols
-Execute the `dashboard` command to display the status of all configured Git repositories. No arguments are required.
-
-`dashboard`
+To display the JARVIS Repository Dashboard, execute:
+```powershell
+dashboard
+```
+This command will print a summary of all Git repositories found under `C:\Git`, showing their current branch and whether they have pending changes.

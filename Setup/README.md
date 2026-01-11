@@ -1,44 +1,41 @@
-# 💻 OPS-SAMURAI Installer Control Module
+# 💻 setup.sh Control Module
+> This script automates the installation and configuration of Zsh, including essential plugins, and links the Zsh configuration file from the Git repository to the user's home directory.
+
 ## 🛠️ Prerequisites
-- `bash` shell environment.
-- `sudo` privileges for package installation.
-- `apt` package manager (for Debian-based systems) if system updates and dependencies are to be installed.
-- `git` for cloning Zsh plugins.
-- `curl` and `unzip` (installed via `apt` if available).
-- The `zshrc` configuration file must be present in the same directory as the `setup.sh` script.
+-   **Operating System**: Debian/Ubuntu-based Linux distribution (due to `apt` package manager usage).
+-   **Tools**: `sudo`, `apt` (for package installation), `git`, `curl`, `unzip`.
+-   **User Permissions**: The script utilizes `sudo` for system package installations, requiring appropriate user privileges.
 
 ## ⚙️ Technical Details
-This script automates the setup of a Zsh environment, including plugin installation and configuration file linking.
+The script performs the following operations:
 
-1.  **Color Definitions**: Defines ANSI escape codes for colored output in the terminal (`GREEN`, `BLUE`, `RED`, `NC`).
-2.  **System Initialization Message**: Displays a blue "Starting System Initialization..." message.
-3.  **Base Package Check & Installation**:
-    *   Checks for the presence of the `apt` command.
-    *   If `apt` is found, it executes `sudo apt update && sudo apt install -y zsh git curl unzip` to update package lists and install necessary packages (zsh, git, curl, unzip).
+1.  **System Initialization**:
+    *   Checks for the presence of the `apt` package manager.
+    *   If `apt` is found, it updates the package list (`sudo apt update`) and installs `zsh`, `git`, `curl`, and `unzip` if they are not already present (`sudo apt install -y ...`).
     *   If `apt` is not found, a warning message is displayed, and package installation is skipped.
-4.  **Plugin Directory Creation**: Creates the `$HOME/.zsh_plugins` directory if it does not already exist.
-5.  **Zsh Plugin Installation**:
+2.  **Plugin Installation**:
+    *   Creates a directory `$HOME/.zsh_plugins` if it does not exist.
     *   **Zsh Syntax Highlighting**: Clones the `zsh-users/zsh-syntax-highlighting` repository into `$HOME/.zsh_plugins/zsh-syntax-highlighting` if the directory does not exist.
     *   **Zsh Autosuggestions**: Clones the `zsh-users/zsh-autosuggestions` repository into `$HOME/.zsh_plugins/zsh-autosuggestions` if the directory does not exist.
-6.  **Configuration File Linking**:
-    *   Defines `TARGET` as `$HOME/.zshrc`.
-    *   Dynamically determines `SCRIPT_DIR` as the absolute path to the directory containing `setup.sh`.
-    *   Defines `SOURCE` as `$SCRIPT_DIR/zshrc`.
-    *   **Source File Validation**: Checks if the `SOURCE` file exists; if not, an error is displayed, and the script exits.
-    *   **Backup Existing `.zshrc`**: If a file named `.zshrc` exists in the home directory and is not already a symbolic link, it is moved to a timestamped backup file (e.g., `.zshrc.backup.<timestamp>`).
-    *   **Create Symlink**: Creates a symbolic link from the `SOURCE` configuration file (`$SCRIPT_DIR/zshrc`) to the `TARGET` location (`$HOME/.zshrc`), using the `-sf` flags to force (overwrite existing symlinks) and create a symbolic link.
-7.  **Deployment Completion**: Displays a success message and instructs the user to restart their shell for changes to take effect.
+3.  **Configuration File Linking**:
+    *   Determines the absolute path of the `zshrc` configuration file within the current script's directory.
+    *   Verifies that the source `zshrc` file exists; otherwise, it exits with an error.
+    *   **Backup**: If a file named `$HOME/.zshrc` exists and is not already a symbolic link, it creates a backup of the existing file, appending `.backup.` and a Unix timestamp to its name.
+    *   **Symlink Creation**: Creates a symbolic link from the repository's `zshrc` file to `$HOME/.zshrc`, overwriting any existing link or file with the `-sf` flag.
 
 ## 🚀 Usage Protocols
-To deploy the Zsh configuration and plugins:
+To execute the script:
 
-1.  Navigate to the directory containing the `setup.sh` script and the `zshrc` configuration file.
-2.  Execute the script from the terminal:
+1.  Navigate to the directory containing `setup.sh` (e.g., `cd Setup`).
+2.  Make the script executable if necessary:
+    ```bash
+    chmod +x setup.sh
+    ```
+3.  Run the script from the terminal:
     ```bash
     ./setup.sh
     ```
-3.  After the script completes, restart your shell by typing:
+4.  After the script completes, restart your shell for the changes to take effect:
     ```bash
     zsh
     ```
-    or by opening a new terminal session to load the new Zsh configuration.

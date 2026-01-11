@@ -3,7 +3,7 @@
 ## 📂 Component Registry
 | Repository | Focus & Purpose | Status |
 | :--- | :--- | :--- |
-| [📁 Cross-Platform](./Cross-Platform/) | Contains configurations and scripts designed to function across various operating systems. | Active |
-| [📁 Linux](./Linux/) | Houses configurations and scripts tailored specifically for Linux environments, including shell customizations. | Active |
-| [📁 Setup](./Setup/) | Provides scripts and instructions for initial system setup and configuration processes. | Active |
-| [📁 Windows-Core](./Windows-Core/) | Includes core configurations and scripts optimized for Windows operating systems, such as PowerShell profiles. | Active |
+| [📁 Cross-Platform](./Cross-Platform/) | Contains configurations and scripts applicable across multiple operating systems. | Active/Stable |
+| [📁 Linux](./Linux/) | Houses configurations and scripts specifically tailored for Linux environments. | Active/Stable |
+| [📁 Setup](./Setup/) | Provides initial setup scripts and configurations for project bootstrapping. | Active/Stable |
+| [📁 Windows-Core](./Windows-Core/) | Dedicated to core configurations and scripts for Windows operating systems. | Active/Stable |
