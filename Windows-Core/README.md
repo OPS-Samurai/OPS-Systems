@@ -1,19 +1,62 @@
-# Windows-Core Module
+## PowerShell Profile (`profile.ps1`)
 
-## Overview
-Senior System Administrator's Script Collection
+### 1. Overview
 
-### profile.ps1
+This PowerShell script serves as a profile script, executed automatically at the start of each PowerShell session. It enhances the terminal experience with custom functions and settings.
 
-A PowerShell script designed to provide various utility functions and tools for daily operations. This script offers a range of features, including Python integration, network scanning, and a dashboard displaying repository status.
+The primary features include:
+-   **UTF-8 Support**: Configures the console to correctly display UTF-8 characters, which is essential for modern multilingual text and emojis.
+-   **Python Tool Integration**: Provides a convenient alias (`netscan`) to execute a Python-based network scanning tool.
+-   **Git Repository Dashboard**: Introduces a `dashboard` function that provides a quick, at-a-glance overview of the status of all Git repositories located in a specified directory (`C:\Git`).
 
-### Python Tools Integration
+### 2. Prerequisites
 
-This section includes a function called `netscan` that starts the Python port scanner (netscan.py) located in the "C:\Git\Python-Tools\Network-Scanner" directory. The script also sets the console output encoding to UTF-8 for correct emoji representation in the dashboard.
+Before using this script, ensure the following requirements are met:
 
-### Daily Dashboard
+-   **Operating System**: Windows with PowerShell.
+-   **Git**: Git must be installed and accessible from the command line for the `dashboard` function to work correctly.
+-   **Python**: A Python installation is required to use the `netscan` function.
+-   **Repository Directory**: The `dashboard` function expects a root directory at `C:\Git` containing multiple Git repositories.
+-   **Python Script**: The `netscan` function requires the existence of the script at `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
 
-The `dashboard` function provides a comprehensive overview of the repository status, displaying each repository's branch and its cleanliness (pending or clean). This feature is particularly useful for tracking changes and ensuring that all repositories are up-to-date.
+### 3. Usage
 
----
-> All systems are managed under ISO/IEC 26514 compliant documentation standards via Local AI.
+Since this is a profile script, the functions defined within it are automatically available in your PowerShell session.
+
+#### **`dashboard` Function**
+
+This function scans all Git repositories located under `C:\Git` and reports their current status.
+
+**Command:**
+```powershell
+dashboard
+```
+
+**Output:**
+The command lists each repository, its current branch, and its status:
+-   **CLEAN** (Green): The working directory is clean; there are no uncommitted changes.
+-   **PENDING** (Yellow): There are uncommitted changes in the working directory.
+
+Example:
+```
+--- 🦅 JARVIS REPOSITORY DASHBOARD ---
+[OPS-Systems                ] (main      ) -> CLEAN
+[My-Project                 ] (develop   ) -> PENDING
+---------------------------------------
+```
+
+#### **`netscan` Function**
+
+This function acts as a shortcut to run the `netscan.py` Python script. It passes any arguments directly to the Python script.
+
+**Command:**
+```powershell
+netscan [arguments]
+```
+
+**Example:**
+To scan a specific IP range, you might use:
+```powershell
+netscan 192.168.1.1/24
+```
+*(Note: The exact arguments depend on the implementation of `netscan.py`)*

@@ -1,42 +1,55 @@
-# Setup Module
-
-## Overview
-OPS-SAMURAI INSTALLER (v3.0 - Hybrid)
-=========================================
-
-This script installs Zsh, plugins, and links the config from a Git repository.
-
-## Setup
-The setup process consists of four steps:
-
-### 1. System Updates & Dependencies
-Prune basis packages using `apt` or report an error if `apt` is not found.
-Install required packages: zsh, git, curl, unzip (using `sudo apt install -y` if necessary).
-
-### 2. Plugins Installation
-Check for plugins and clone them from Git repositories:
-	* zsh-syntax-highlighting
-	* zsh-autosuggestions
-
-### 3. Backup & Symlinks
-Create symlinks to config files:
-	* Verlinkt die Konfigurationsdateien...
-Backup existing `.zshrc` file (if it exists) and rename it.
-
-### 4. Conclusion
-The deployment is complete.
-Please restart the shell: `zsh`
-
-## Notes
-
-- The script uses Bash as its scripting language.
-- It utilizes Git to clone plugins from repositories.
-- It creates symlinks to config files, overwriting existing ones (if necessary).
-- The script reports errors and warnings using colors.
-
-**Run with caution!**
-
-Please note that this README.md file is a generated translation of the original setup script. For any issues or questions, please refer to the original code or contact the author.
+## **ISO Documentation: `setup.sh` - Zsh Environment Installer**
 
 ---
-> All systems are managed under ISO/IEC 26514 compliant documentation standards via Local AI.
+
+#### **1. Overview**
+
+The `setup.sh` script is a hybrid installer designed to automate the configuration of a Zsh (Z Shell) environment on a Linux-based system. Its primary function is to prepare the system by installing necessary dependencies, deploying essential Zsh plugins, and linking a custom `zshrc` configuration file from this repository to the user's home directory.
+
+The script is designed with safety and idempotency in mind:
+*   **Dependency Management**: It attempts to install required packages (`zsh`, `git`, `curl`, `unzip`) using the `apt` package manager.
+*   **Idempotent Plugin Installation**: It checks for the existence of plugins before attempting to download them, preventing redundant operations.
+*   **Safe Configuration Linking**: It automatically backs up any existing `.zshrc` file before creating a symbolic link, preventing accidental data loss.
+*   **Dynamic Path Resolution**: It intelligently locates the source configuration file relative to its own position, ensuring it works regardless of where the repository is cloned.
+
+---
+
+#### **2. Prerequisites**
+
+To ensure the script runs successfully, the following conditions must be met:
+
+*   **Operating System**: A Debian-based Linux distribution (e.g., Ubuntu, Debian) with the `apt` package manager is recommended. The script contains a fallback for other systems, but the automatic installation of dependencies will be skipped.
+*   **User Permissions**: The user must have `sudo` privileges, as the script requires administrative rights to update the system and install packages.
+*   **Required Tools**: `git` must be installed or installable on the system for cloning Zsh plugins.
+*   **Repository Structure**: The script requires the source `zshrc` configuration file to be present in the same directory (`/Setup`) from which the script is executed.
+
+---
+
+#### **3. Usage**
+
+Follow these steps to execute the installer script:
+
+1.  **Navigate to the Script Directory**:
+    Open a terminal and change to the directory containing the script.
+    ```bash
+    cd Setup/
+    ```
+
+2.  **Make the Script Executable**:
+    Grant execution permissions to the script file.
+    ```bash
+    chmod +x setup.sh
+    ```
+
+3.  **Run the Installer**:
+    Execute the script. You will be prompted for your `sudo` password to proceed with package installation.
+    ```bash
+    ./setup.sh
+    ```
+    The script will display its progress as it updates packages, clones plugins, and links the configuration file.
+
+4.  **Reload Shell**:
+    After the script completes successfully, you must restart your terminal or run the following command to load the new Zsh configuration:
+    ```bash
+    zsh
+    ```
