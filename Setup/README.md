@@ -1,54 +1,51 @@
-I will now create an English `README.md` file for the provided `setup.sh` script. This file will explain the script's purpose, features, and usage instructions, and it will be saved as `Setup/README.md`.
+# OPS-Samurai Zsh Environment Setup
 
-# OPS-SAMURAI Zsh Environment Setup
+This repository contains a setup script to configure a Zsh environment with useful plugins and settings. The script is designed to automate the installation and configuration process on Debian-based Linux systems.
 
-This script automates the setup of a personalized Zsh environment on Debian-based Linux systems. It installs Zsh, essential plugins, and links the configuration file from this repository.
+## Overview
 
-## Features
-
--   **Package Installation**: Automatically updates the system and installs `zsh`, `git`, `curl`, and `unzip` using `apt`.
--   **Plugin Management**: Downloads and sets up the following popular Zsh plugins in the `~/.zsh_plugins` directory:
-    -   `zsh-syntax-highlighting`
-    -   `zsh-autosuggestions`
--   **Smart Configuration Linking**:
-    -   Automatically backs up any existing `~/.zshrc` file to `~/.zshrc.backup.[timestamp]`.
-    -   Creates a symbolic link from the `zshrc` file in this repository to `~/.zshrc`, ensuring your configuration is managed by Git.
--   **Self-Healing**: The script checks for existing plugins and only downloads them if they are missing.
+The `setup.sh` script automates the following tasks:
+- **System Update & Dependencies**: Updates the package list and installs `zsh`, `git`, `curl`, and `unzip`.
+- **Plugin Installation**: Clones essential Zsh plugins (`zsh-syntax-highlighting` and `zsh-autosuggestions`) into the `~/.zsh_plugins` directory.
+- **Configuration Symlinking**: Backs up any existing `~/.zshrc` file and creates a symbolic link to the `zshrc` file included in this repository.
 
 ## Prerequisites
 
--   A Debian-based Linux distribution (e.g., Ubuntu, Debian) with `sudo` privileges.
--   `bash` to execute the script.
+- A Debian-based Linux distribution (e.g., Ubuntu, Debian) with `apt` package manager.
+- `sudo` privileges to install system packages.
 
-## How to Use
+## Usage
 
-1.  **Clone the Repository**
-    Make sure you have this repository cloned to your local machine. The script relies on the `zshrc` file being in the same directory.
-
-2.  **Make the Script Executable**
-    Navigate to the directory containing the script and run:
+1.  Clone this repository to your local machine.
+2.  Navigate to the directory containing the script.
+3.  Make the script executable:
     ```bash
     chmod +x setup.sh
     ```
-
-3.  **Run the Installer**
-    Execute the script:
+4.  Run the installer:
     ```bash
     ./setup.sh
     ```
-    The script will prompt for your `sudo` password to install system packages.
 
-4.  **Restart Your Shell**
-    After the script completes, start a new Zsh session to see the changes:
-    ```bash
-    zsh
-    ```
-    Or, simply close and reopen your terminal.
+## How It Works
 
-## File Structure
+1.  **System Initialization**: The script begins by checking for and installing necessary packages (`zsh`, `git`, `curl`, `unzip`) using `apt`. If `apt` is not found, this step is skipped.
 
--   `setup.sh`: The main installation and configuration script.
--   `zshrc`: The source Zsh configuration file that will be symbolically linked to your home directory. All shell customizations should be made to this file.
+2.  **Plugin Management**: It ensures the plugin directory `~/.zsh_plugins` exists. It then checks for `zsh-syntax-highlighting` and `zsh-autosuggestions` and clones them from their GitHub repositories if they are not already present.
+
+3.  **Configuration Linking**:
+    - The script identifies the location of the repository's `zshrc` file.
+    - It checks if you have an existing `~/.zshrc` file.
+    - If a regular file (not a symlink) exists at `~/.zshrc`, it is backed up with a timestamp (e.g., `~/.zshrc.backup.1672531200`).
+    - Finally, it creates a symbolic link from `~/.zshrc` to the `zshrc` file in this project, ensuring your shell uses the repository's configuration.
+
+## Post-Installation
+
+After the script completes, you must restart your shell for the changes to take effect. You can do this by closing and reopening your terminal or by running:
+
+```bash
+zsh
+```
 
 ---
 > All systems are managed under ISO/IEC 26514 compliant documentation standards.
