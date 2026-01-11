@@ -1,9 +1,9 @@
-# 🏗️ OPS-Systems Architecture
-> This repository consolidates system configurations, scripts, and documentation for various operating systems, ensuring consistent and efficient setup and management across different environments.
-## 📂 Sub-Repositories
+# 🧬 OPS-Systems System Architecture
+> Overview of the system structure.
+## 📂 Component Registry
 | Repository | Focus & Purpose | Status |
 | :--- | :--- | :--- |
-| [📁 Cross-Platform](./Cross-Platform/) | Contains configurations and scripts applicable across multiple operating systems. | Active |
-| [📁 Linux](./Linux/) | Houses specific configurations and utilities tailored for Linux environments. | Active |
-| [📁 Setup](./Setup/) | Includes initial setup scripts and installation routines for new environments. | Active |
-| [📁 Windows-Core](./Windows-Core/) | Provides core configurations and scripts specifically for Windows operating systems. | Active |
+| [📁 Cross-Platform](./Cross-Platform/) | Manages configurations for Git and VS Code applicable across different operating systems. | Active |
+| [📁 Linux](./Linux/) | Contains setup scripts and configurations specific to Linux environments, like `zshrc`. | Active |
+| [📁 Setup](./Setup/) | Holds the main setup scripts for the entire OPS-System. | Active |
+| [📁 Windows-Core](./Windows-Core/) | Provides core PowerShell profiles and settings for Windows environments. | Active |

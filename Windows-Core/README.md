@@ -1,56 +1,31 @@
-# 📝 profile.ps1
-This PowerShell script provides utility functions designed to integrate external tools and display repository statuses.
-
+# 💻 Windows Core Control Module
 ## 🛠️ Prerequisites
-- PowerShell environment.
-- Git command-line tools must be installed and accessible in the system's PATH.
-- Python runtime must be installed for Python-based tools.
-
----
+- Windows PowerShell environment.
+- Git command-line tools installed and accessible via the system's PATH.
+- A Python installation is required to run the `netscan` function.
+- The `Python-Tools` repository must exist at the hardcoded path `C:\Git\Python-Tools\`.
 
 ## ⚙️ Technical Details
+This PowerShell module configures the environment for UTF-8 character support and provides two core functions for development and repository management.
 
-### `netscan` Function
-A wrapper function to execute the Python-based port scanner `netscan.py`.
+**`netscan` Function:**
+- A wrapper designed to execute the Python network scanner script `netscan.py`.
+- It calls the script from a fixed location: `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
+- All arguments passed to `netscan` are forwarded to the underlying Python script.
 
-- **Alias:** `netscan`
-- **Functionality:** It forwards all provided arguments (`@args`) directly to the Python script.
-- **Dependency:** Requires the script to be located at `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
+**`dashboard` Function:**
+- Scans the `C:\Git` directory to generate a status report for all contained Git repositories.
+- For each repository, it displays the repository name, the current Git branch, and its status.
+- The status is color-coded for readability:
+    - **CLEAN** (Green): Indicates no uncommitted changes.
+    - **PENDING** (Yellow): Indicates there are uncommitted changes.
 
-### `dashboard` Function
-Displays a summary of the Git status for all repositories located in a specified directory.
+## 🚀 Usage Protocols
+**`netscan`**
+- **Purpose:** To run the Python network scanner.
+- **Syntax:** `netscan [args]`
+- **Description:** Replace `[args]` with the arguments required by the `netscan.py` script.
 
-- **Alias:** `dashboard`
-- **Functionality:**
-    - Iterates through each subdirectory within `C:\Git`.
-    - For each directory, it retrieves the current Git branch and status.
-    - It prints a formatted line showing the repository name, current branch, and status.
-- **Status Indicators:**
-    - **CLEAN** (Green): The repository has no pending changes.
-    - **PENDING** (Yellow): The repository has unstaged or uncommitted changes.
-
-## 🚀 Usage
-
-### Example 1: Using `netscan`
-To scan a specific IP address and port range, pass them as arguments.
-
-```powershell
-netscan 192.168.1.1 -p 22,80,443
-```
-
-### Example 2: Displaying the Dashboard
-To view the status of all repositories:
-
-```powershell
-dashboard
-```
-
-**Example Output:**
-
-```
---- 🦅 JARVIS REPOSITORY DASHBOARD ---
-[OPS-Systems                ] (main      ) -> CLEAN
-[Project-X                  ] (develop   ) -> PENDING
-[API-Service                ] (feature/auth) -> CLEAN
----------------------------------------
-```
+**`dashboard`**
+- **Purpose:** To get a quick overview of the status of all repositories.
+- **Syntax:** `dashboard`

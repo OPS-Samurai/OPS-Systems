@@ -1,7 +1,7 @@
-# 🏗️ Cross-Platform Architecture
-> Centralized configurations and scripts designed for cross-operating system compatibility, ensuring a consistent development environment across different platforms.
-## 📂 Sub-Repositories
+# 🧬 Cross-Platform System Architecture
+> Overview of the system structure.
+## 📂 Component Registry
 | Repository | Focus & Purpose | Status |
 | :--- | :--- | :--- |
-| [📁 Git](./Git/) | Global Git configurations and settings. | Active/Stable |
-| [📁 VS-Code](./VS-Code/) | Visual Studio Code settings and extensions. | Active/Stable |
+| [📁 Git](./Git/) | Global Git configurations. | Active |
+| [📁 VS-Code](./VS-Code/) | Visual Studio Code settings and configurations. | Active |
