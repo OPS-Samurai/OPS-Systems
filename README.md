@@ -1,6 +1,6 @@
 # OPS-Systems Architecture
 
-This framework orchestrates multiple automation modules. Use the matrix below to navigate through the project documentation.
+The central orchestration hub for cross-platform synchronization, core system configurations, and automated documentation workflows.
 
 | Repository | Focus & Purpose | Status |
 | :--- | :--- | :--- |
