@@ -3,5 +3,5 @@
 ## 📂 Component Registry
 | Repository | Focus & Purpose | Status |
 | :--- | :--- | :--- |
-| [📁 Git](./Git/) | Global Git configurations. | Active |
+| [📁 Git](./Git/) | Git-related global configurations. | Active |
 | [📁 VS-Code](./VS-Code/) | Visual Studio Code settings and configurations. | Active |

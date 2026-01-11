@@ -1,31 +1,25 @@
-# 💻 Windows Core Control Module
+# 💻 netscan Control Module
 ## 🛠️ Prerequisites
-- Windows PowerShell environment.
-- Git command-line tools installed and accessible via the system's PATH.
-- A Python installation is required to run the `netscan` function.
-- The `Python-Tools` repository must exist at the hardcoded path `C:\Git\Python-Tools\`.
+- Python environment installed and configured.
+- `netscan.py` script available at `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
 
 ## ⚙️ Technical Details
-This PowerShell module configures the environment for UTF-8 character support and provides two core functions for development and repository management.
-
-**`netscan` Function:**
-- A wrapper designed to execute the Python network scanner script `netscan.py`.
-- It calls the script from a fixed location: `C:\Git\Python-Tools\Network-Scanner\netscan.py`.
-- All arguments passed to `netscan` are forwarded to the underlying Python script.
-
-**`dashboard` Function:**
-- Scans the `C:\Git` directory to generate a status report for all contained Git repositories.
-- For each repository, it displays the repository name, the current Git branch, and its status.
-- The status is color-coded for readability:
-    - **CLEAN** (Green): Indicates no uncommitted changes.
-    - **PENDING** (Yellow): Indicates there are uncommitted changes.
+This module provides a convenient wrapper to execute the `netscan.py` Python script. It facilitates the execution of a Python-based port scanner by passing any provided arguments directly to the underlying Python script. The `Console::OutputEncoding` is set to UTF-8 to ensure proper character display.
 
 ## 🚀 Usage Protocols
-**`netscan`**
-- **Purpose:** To run the Python network scanner.
-- **Syntax:** `netscan [args]`
-- **Description:** Replace `[args]` with the arguments required by the `netscan.py` script.
+To initiate the network scan, invoke the `netscan` command, optionally followed by arguments intended for the `netscan.py` Python script.
 
-**`dashboard`**
-- **Purpose:** To get a quick overview of the status of all repositories.
-- **Syntax:** `dashboard`
+`netscan <python_script_arguments>`
+
+# 💻 dashboard Control Module
+## 🛠️ Prerequisites
+- Git version control system installed and configured.
+- Git repositories are expected to reside within the `C:\Git` directory.
+
+## ⚙️ Technical Details
+The `dashboard` module provides an overview of the status of local Git repositories. It iterates through each subdirectory within `C:\Git`, treating them as Git repositories. For each repository, it retrieves the current branch and checks for pending changes using `git status --porcelain`. The output presents each repository's name, its active branch, and an indicator ("CLEAN" for no pending changes, "PENDING" for uncommitted modifications), color-coded for quick visual assessment. The `Console::OutputEncoding` is set to UTF-8 to ensure proper character display.
+
+## 🚀 Usage Protocols
+Execute the `dashboard` command to display the status of all configured Git repositories. No arguments are required.
+
+`dashboard`

@@ -1,44 +1,28 @@
 # 💻 VS-Code Settings Control Module
 ## 🛠️ Prerequisites
-- A compatible installation of Visual Studio Code is required for these settings to be applied.
-- The Snyk security integration requires the Snyk CLI executable to be located at the path specified in `snyk.advanced.cliPath`.
+This module requires an existing installation of Visual Studio Code.
 
 ## ⚙️ Technical Details
-This module consists of a `settings.json` file that configures the Visual Studio Code environment. The settings are as follows:
+This control module is a JSON configuration file (`settings.json`) designed to standardize specific operational and visual settings within Visual Studio Code. It dictates various aspects of the editor's behavior, extensions, and aesthetic preferences to ensure a consistent development environment.
 
-**Editor Configuration:**
-- `editor.tabCompletion`: "off"
-- `editor.wordSeparators`: "`~! @#$%^&*()-=+[{]}\\|;:'\",.<>/?`
-- `editor.fontSize`: 14
-- `editor.guides.indentation`: true
-- `files.defaultLanguage`: ""
-
-**PowerShell Integration:**
-- `powershell.buttons.showPanelMovementButtons`: false
-- `powershell.codeFolding.showLastLine`: true
-- `powershell.sideBar.CommandExplorerVisibility`: true
-- `powershell.integratedConsole.showStartBanner`: false
-- `powershell.integratedConsole.focusConsoleOnExecute`: false
-
-**Snyk Security Scanner:**
-- `snyk.advanced.cliPath`: "C:\\Users\\NGonc\\AppData\\Local\\snyk\\vscode-cli\\snyk-win.exe"
-- `snyk.securityAtInception.autoConfigureSnykMcpServer`: true
-- `snyk.securityAtInception.executionFrequency`: "On Code Generation"
-- `snyk.trustedFolders`: null
-
-**Workbench & UI:**
-- `workbench.enableExperiments`: false
-- `workbench.preferredHighContrastLightColorTheme`: "Default Dark Modern"
-- `workbench.preferredLightColorTheme`: "Default Dark Modern"
-- `workbench.preferredHighContrastColorTheme`: "Default Dark Modern"
-- `window.systemColorTheme`: "dark"
-- `terminal.integrated.fontSize`: 14
-
-**Telemetry & Diagnostics:**
-- `debug.openDebug`: "openOnDebugBreak"
-- `errorLens.enabled`: true
-- `databricks.telemetry.enabled`: false
-- `telemetry.telemetryLevel`: "off"
+Key configurations include:
+*   **Debugger Behavior**: `debug.openDebug` is set to `openOnDebugBreak`, automatically opening the debug view when a breakpoint is hit.
+*   **Editor Enhancements**: `editor.tabCompletion` is disabled, and `editor.wordSeparators` is customized for enhanced word selection logic. `editor.fontSize` and `terminal.integrated.fontSize` define the text size for the editor and integrated terminal respectively. Indentation guides are enabled via `editor.guides.indentation`.
+*   **PowerShell Integration**: Specific settings for the PowerShell extension (`powershell.*`) are configured, including disabling panel movement buttons, showing the last line for code folding, and suppressing the start banner in the integrated console.
+*   **Security Tools**: Settings for the Snyk extension (`snyk.*`) are present, indicating a configuration for security analysis.
+*   **Error Visualization**: `errorLens.enabled` activates the ErrorLens extension for inline error highlighting.
+*   **Telemetry Control**: All telemetry collection (`databricks.telemetry.enabled`, `telemetry.telemetryLevel`) is explicitly disabled to enhance privacy.
+*   **Theming**: Preferred color themes (`workbench.preferred...ColorTheme`, `window.systemColorTheme`) are set to "Default Dark Modern" to ensure a consistent dark mode experience.
 
 ## 🚀 Usage Protocols
-These settings are automatically applied by Visual Studio Code upon startup when the `settings.json` file is placed in the appropriate user or workspace configuration directory. The configuration customizes the editor behavior, terminal appearance, PowerShell integration, and third-party extension settings to standardize the development environment.
+To activate these settings, the provided JSON content must be saved as `settings.json` within the Visual Studio Code user or workspace settings directory.
+
+**User Settings (Global):**
+Place the `settings.json` file in:
+*   **Windows:** `%APPDATA%\Code\User\settings.json`
+
+**Workspace Settings (Project-Specific):**
+Create a `.vscode` folder in the root of your project and place `settings.json` inside it:
+*   `[Your Project Root]/.vscode/settings.json`
+
+Workspace settings override user settings for the specific project. Upon saving the file, Visual Studio Code automatically applies the changes.
